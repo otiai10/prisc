@@ -11,11 +11,10 @@ module.exports = (grunt) ->
 
         handlebars:
             options:
-                namespace: 'HBS'
+                namespace: "HBS"
             compile:
                 files:
-                    "build/tpl/all.js": "src/tpl/**/*.hbs"
-
+                    "build/tpl/all.js": "asset/tpl/**/*.hbs"
         concat:
             dist:
                 src: [
@@ -24,7 +23,7 @@ module.exports = (grunt) ->
                     'build/app.js'
                 ]
                 dest: 'build/app.js'
-        # minify
+        # 最後にどうこうする
         uglify:
             build:
                 files:

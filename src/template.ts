@@ -1,4 +1,5 @@
 /// <reference path="./prefix.ts" />
+// TODO: あーここが問題っぽい
 module Prisc {
     export class HBSTemplate {
         private template: HandlebarsTemplate = null;
