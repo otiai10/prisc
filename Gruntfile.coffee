@@ -19,6 +19,7 @@ module.exports = (grunt) ->
             dist:
                 src: [
                     'bower_components/handlebars/handlebars.js'
+                    'bower_components/showv/build/showv.js'
                     'build/tpl/all.js'
                     'build/app.js'
                 ]
