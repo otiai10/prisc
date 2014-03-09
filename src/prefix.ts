@@ -1,1 +1,1 @@
-/// <reference path="../../definitions/handlebars/handlebars.d.ts" />
+/// <reference path="../definitions/handlebars/handlebars.d.ts" />

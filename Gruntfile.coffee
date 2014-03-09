@@ -5,7 +5,7 @@ module.exports = (grunt) ->
             # tsファイルをひとつのjsにする
             build:
                 src: [
-                    'src/ts/**/*.ts'
+                    'src/**/*.ts'
                 ]
                 dest: 'build/app.js'
 
