@@ -1,9 +1,11 @@
 /// <reference path="../../definitions/chrome/chrome.d.ts" />
 /// <reference path="../../definitions/showv/showv.d.ts" />
 /// <reference path="../views/sample-view.ts" />
+/// <reference path="../util/query.ts" />
 
 module Prisc {
     export class Controller {
+        private baseURL = 'asset/html/app.html';
         constructor(){}
         init() {
             chrome.browserAction.onClicked.addListener((tab) => {
@@ -16,9 +18,12 @@ module Prisc {
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
             chrome.tabs.captureVisibleTab(windowId, options, (imageURI: string) => {
+                var query = new Util.Query({
+                    view: 'Capture',
+                    imageURI: imageURI
+                });
                 this.open({
-                    // url:imageURI
-                    url: 'asset/html/app.html'
+                    url: this.baseURL + query.toString()
                 });
             });
         }
@@ -27,7 +32,7 @@ module Prisc {
                 callback(tab);
             });
         }
-        execute(): showv.View {
+        execute(params: Object): showv.View {
             return new SampleView();
         }
     }
