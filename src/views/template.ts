@@ -1,5 +1,4 @@
-/// <reference path="../definitions/handlebars/handlebars.d.ts" />
-// TODO: あーここが問題っぽい
+/// <reference path="../../definitions/handlebars/handlebars.d.ts" />
 module Prisc {
     export class HBSTemplate {
         private template: HandlebarsTemplate = null;

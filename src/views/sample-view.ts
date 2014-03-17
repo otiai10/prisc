@@ -1,4 +1,4 @@
-/// <reference path="../template.ts" />
+/// <reference path="template.ts" />
 /// <reference path="./view.ts" />
 
 module Prisc {
