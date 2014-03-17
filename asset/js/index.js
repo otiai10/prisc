@@ -1,6 +1,7 @@
 $(function(){
   var view = Prisc.Router.resolve();
-  $('body').append(
+  $('div#main').append(
       view.render().$el
   );
+  $('title').text(view.title + ' - Prisc!');
 });
