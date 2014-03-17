@@ -18,6 +18,7 @@ module.exports = (grunt) ->
         concat:
             dist:
                 src: [
+                    'bower_components/jquery/jquery.js'
                     'bower_components/handlebars/handlebars.js'
                     'bower_components/showv/build/showv.js'
                     'build/tpl/all.js'

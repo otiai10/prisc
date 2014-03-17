@@ -1,4 +1,5 @@
-/// <reference path="../prefix.ts" />
+/// <reference path="../template.ts" />
+/// <reference path="../../definitions/showv/showv.d.ts" />
 
 module Prisc {
     export class PaletteView extends showv.View {

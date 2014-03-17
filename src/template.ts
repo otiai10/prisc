@@ -1,4 +1,4 @@
-/// <reference path="./prefix.ts" />
+/// <reference path="../definitions/handlebars/handlebars.d.ts" />
 // TODO: あーここが問題っぽい
 module Prisc {
     export class HBSTemplate {
