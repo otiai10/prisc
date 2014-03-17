@@ -7,7 +7,7 @@ module Prisc {
             super();
         }
         execute(params: Object) {
-            return new CaptureView();
+            return new CaptureView(params['imageURI']);
         }
     }
 }
