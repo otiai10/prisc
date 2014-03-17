@@ -1,8 +1,8 @@
 /// <reference path="../template.ts" />
-/// <reference path="../../definitions/showv/showv.d.ts" />
+/// <reference path="./view.ts" />
 
 module Prisc {
-    export class SampleView extends showv.View {
+    export class SampleView extends View {
         private tpl = new HBSTemplate('sample.hbs');
         constructor(){
             super();

@@ -4,8 +4,7 @@
     "version": "0.0.1",
     "description": "プリスク",
     "permissions" : [
-        "storage",
-        "downloads"
+        "activeTab"
     ],
     "icons" : {
         "48"  : "asset/img/icon/icon.48.png",
