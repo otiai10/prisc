@@ -2,10 +2,16 @@
 /// <reference path="../../definitions/showv/showv.d.ts" />
 
 module Prisc {
-    export class PaletteView extends showv.View {
-        private tpl = new HBSTemplate('asset/tpl/hoge.hbs');
+    export class SampleView extends showv.View {
+        private tpl = new HBSTemplate('sample.hbs');
         constructor(){
             super();
+        }
+        render(): SampleView {
+            this.$el.append(
+                this.tpl.render()
+            );
+            return this;
         }
     }
 }
