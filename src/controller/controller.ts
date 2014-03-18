@@ -8,7 +8,7 @@
 
 module Prisc {
     export class Controller {
-        private baseURL = 'asset/html/app.html';
+        private static baseURL = 'asset/html/app.html';
         constructor(public controllerName: string = ""){}
         init() {
             chrome.browserAction.onClicked.addListener((tab) => {
@@ -25,16 +25,19 @@ module Prisc {
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
             chrome.tabs.captureVisibleTab(windowId, options, (imageURI: string) => {
-                var query = new Util.Query({
-                    view: 'Capture',
-                    imageURI: imageURI
-                });
-                this.open({
-                    url: this.baseURL + query.toString()
-                });
+                Controller.openCaptureViewByImageURI(imageURI);
             });
         }
-        open(params: chrome.tabs.CreateProperties, callback: (tab: any) => any = (tab: any) => {}) {
+        public static openCaptureViewByImageURI(imageURI: string) {
+            var query = new Util.Query({
+                view: 'Capture',
+                imageURI: imageURI
+            });
+            Controller.open({
+                url: Controller.baseURL + query.toString()
+            });
+        }
+        public static open(params: chrome.tabs.CreateProperties, callback: (tab: any) => any = (tab: any) => {}) {
             chrome.tabs.create(params, (tab) => {
                 callback(tab);
             });
