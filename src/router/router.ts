@@ -13,8 +13,8 @@ module Prisc {
             return controller.execute(params);
         }
         public static message(message: Message): any/* View? */{
-            var controller = MessageRoutes.match(message['purpose']);
-            return controller.execute(message);
+            var controller = MessageRoutes.match(message.purpose);
+            return controller.execute(message.params);
         }
     }
 }

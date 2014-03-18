@@ -2,6 +2,7 @@
 /// <reference path="../../definitions/showv/showv.d.ts" />
 /// <reference path="../views/sample-view.ts" />
 /// <reference path="../util/query.ts" />
+/// <reference path="../router/router.ts" />
 
 module Prisc {
     export class Controller {
@@ -14,6 +15,10 @@ module Prisc {
                     format: 'png'
                 };
                 this.capture(windowId, options)
+            });
+            chrome.runtime.onMessage.addListener((messageObj: Object, sender: any, sendResponse: (any) => any) => {
+                var message = Message.factory(messageObj);
+                Router.message(message);
             });
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
