@@ -2,6 +2,7 @@
 /// <reference path="../../../definitions/chrome/chrome.d.ts" />
 /// <reference path="./tools/interface.ts" />
 /// <reference path="./tools/rect.ts" />
+/// <reference path="../drawing-context.ts" />
 
 module Prisc {
     export interface ICanvasInitOption {
@@ -97,25 +98,26 @@ module Prisc {
             this.isFingerDown = false;
         }
         private determineTool(): Tool {
-            var bp = chrome.extension.getBackgroundPage();
-            var toolName = bp['Prisc']['drawingContext']['tool'];
+            var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContest'];
+            var toolName = dc.tool;
             // TODO: validation
             return new Prisc[toolName](this);
         }
         private determineColor() {
-            var bp = chrome.extension.getBackgroundPage();
-            this.__context.fillStyle = bp['Prisc']['drawingContext']['color']['code'];
-            this.__context.strokeStyle = bp['Prisc']['drawingContext']['color']['code'];
+            var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContext'];
+            this.__context.fillStyle = dc.color.code;
+            this.__context.strokeStyle = dc.color.code;
         }
         private determineLineWidth() {
             // FIXME: とりあえずハード
             this.__context.lineWidth = 10;
         }
         private determineFont() {
-            var fontSize = $('#text-size').val();
-            var fontFamily = $('#text-font').val();
+            var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContext'];
+            var fontSize = String(dc.font.size);
+            var fontFamily = dc.font.family;
             this.__context.font = fontSize + ' ' +  fontFamily;
-            this.fontValue = "hogeeee";
+            this.fontValue = dc.font.value;
          }
     }
 }

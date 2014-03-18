@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/chrome/chrome.d.ts" />
+/// <reference path="../../definitions/jquery/jquery.d.ts" />
 /// <reference path="../../definitions/showv/showv.d.ts" />
 /// <reference path="../view/sample-view.ts" />
 /// <reference path="../util/query.ts" />
@@ -40,6 +41,13 @@ module Prisc {
         }
         execute(params: Object): any {
             return new SampleView();
+        }
+
+        public static sendMessage(purpose: string, params: any, callback: (any) => any = (any) => {}) {
+            var message = $.extend({params:params}, {purpose:purpose});
+            chrome.runtime.sendMessage(message, (res) => {
+                callback(res);
+            });
         }
     }
 }
