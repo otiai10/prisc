@@ -19,6 +19,7 @@ module Prisc {
 
         public stackedImageData: ImageData[];
         public stashedImageData: ImageData;
+        public fontValue: string;
 
         constructor(options: ICanvasInitOption = {}){
             this.tagId = options.tagId || this.tagId;
@@ -78,6 +79,7 @@ module Prisc {
             // 色などのコンテキストを決定
             this.determineColor();
             this.determineLineWidth();
+            this.determineFont();
             // 開始
             this.tool.onStart(ev);
         }
@@ -109,5 +111,11 @@ module Prisc {
             // FIXME: とりあえずハード
             this.__context.lineWidth = 10;
         }
+        private determineFont() {
+            var fontSize = $('#text-size').val();
+            var fontFamily = $('#text-font').val();
+            this.__context.font = fontSize + ' ' +  fontFamily;
+            this.fontValue = "hogeeee";
+         }
     }
 }

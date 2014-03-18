@@ -2,23 +2,20 @@
 /// <reference path="../canvas.ts" />
 
 module Prisc {
-    export class RectTool implements Tool{
+    export class RectTool implements Tool {
 
         private start: ICoordinates;
         private end: ICoordinates;
 
         constructor(private canvas: Canvas) {}
         onStart(ev) {
-            // 始点座標の記憶
             this.start = {
                 x: ev.offsetX,
                 y: ev.offsetY
             };
         }
         onMove(ev) {
-            // 初期状態に復帰
             this.rollback();
-            // 終点座標の更新
             this.end = {
                 x: ev.offsetX,
                 y: ev.offsetY
@@ -26,7 +23,6 @@ module Prisc {
             this.draw();
         }
         onFinish(ev) {
-            // 終点座標の確定
             this.end = {
                 x: ev.offsetX,
                 y: ev.offsetY
