@@ -40,13 +40,9 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-typescript'
     grunt.loadNpmTasks 'grunt-contrib-concat'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
-    grunt.loadNpmTasks 'grunt-contrib-copy'
-    grunt.loadNpmTasks 'grunt-contrib-connect'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
     grunt.loadNpmTasks 'grunt-regarde'
     grunt.loadNpmTasks 'grunt-exec'
-    grunt.loadNpmTasks 'grunt-json-minify'
-    grunt.loadNpmTasks 'grunt-git'
 
     grunt.registerTask 'build', 'build/app(.min).jsをビルドします',['typescript:build', 'handlebars', 'concat:dist', 'uglify:build']
     grunt.registerTask 'watch', '`src/**/*.ts`と`tpl/**/*.ts`を監視しながらビルドします', ['build', 'regarde']
