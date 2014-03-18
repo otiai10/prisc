@@ -98,7 +98,6 @@ module Prisc {
             return new RectTool(this);
         }
         private determineColor() {
-            // FIXME: とりあえずハード
             var bp = chrome.extension.getBackgroundPage();
             this.__context.fillStyle = bp['Prisc']['drawingContext']['color']['code'];
             this.__context.strokeStyle = bp['Prisc']['drawingContext']['color']['code'];
