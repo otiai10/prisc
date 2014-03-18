@@ -16,8 +16,9 @@ module Prisc {
     export class MessageRoutes {
         public static match(purpose): Controller {
             var controllerName = 'Message' + purpose + 'Controller';
+            var originalPurpose = controllerName;
             if (! Prisc[controllerName]) controllerName = 'MessageNotFoundController';
-            return new Prisc[controllerName]();
+            return new Prisc[controllerName](originalPurpose);
         }
     }
 }

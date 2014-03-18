@@ -4,5 +4,8 @@ module Prisc {
         constructor() {
             super();
         }
+        execute(params: Object) {
+            console.log("purpose `" + this.controllerName + "` not found, with parameters ", params);
+        }
     }
 }

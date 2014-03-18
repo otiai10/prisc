@@ -3,11 +3,12 @@
 /// <reference path="../view/sample-view.ts" />
 /// <reference path="../util/query.ts" />
 /// <reference path="../router/router.ts" />
+/// <reference path="../router/message-routes.ts" />
 
 module Prisc {
     export class Controller {
         private baseURL = 'asset/html/app.html';
-        constructor(){}
+        constructor(public controllerName: string = ""){}
         init() {
             chrome.browserAction.onClicked.addListener((tab) => {
                 var windowId = null;
@@ -37,7 +38,7 @@ module Prisc {
                 callback(tab);
             });
         }
-        execute(params: Object): showv.View {
+        execute(params: Object): any {
             return new SampleView();
         }
     }
