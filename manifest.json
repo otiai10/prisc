@@ -4,7 +4,8 @@
     "version": "0.0.1",
     "description": "「プリスク！」はワンクリックでブラウザ画面をスクリーンショット撮るソフトウェアです。最低限の編集もできます。",
     "permissions" : [
-        "activeTab"
+        "activeTab",
+        "downloads"
     ],
     "icons" : {
         "48"  : "asset/img/icon/icon.48.png",

@@ -123,6 +123,10 @@ module Prisc {
             var fontFamily = dc.font.family;
             this.__context.font = fontSize + ' ' +  fontFamily;
             this.fontValue = dc.font.value;
-         }
+        }
+        getImageURI(format: string = 'png') {
+            var type = 'image/' + format;
+            return this.__canvas.toDataURL(type);
+        }
     }
 }
