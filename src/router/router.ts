@@ -1,4 +1,4 @@
-/// <reference path="../views/view.ts" />
+/// <reference path="../view/view.ts" />
 /// <reference path="../controller/controller.ts" />
 /// <reference path="../util/query.ts" />
 /// <reference path="./routes" />

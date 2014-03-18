@@ -1,6 +1,6 @@
 /// <reference path="../../definitions/chrome/chrome.d.ts" />
 /// <reference path="../../definitions/showv/showv.d.ts" />
-/// <reference path="../views/sample-view.ts" />
+/// <reference path="../view/sample-view.ts" />
 /// <reference path="../util/query.ts" />
 /// <reference path="../router/router.ts" />
 
