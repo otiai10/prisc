@@ -1,4 +1,5 @@
 /// <reference path="../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="../../../definitions/chrome/chrome.d.ts" />
 /// <reference path="./tools/interface.ts" />
 /// <reference path="./tools/rect.ts" />
 
@@ -98,8 +99,9 @@ module Prisc {
         }
         private determineColor() {
             // FIXME: とりあえずハード
-            this.__context.fillStyle = '#f00';
-            this.__context.strokeStyle = '#00f';
+            var bp = chrome.extension.getBackgroundPage();
+            this.__context.fillStyle = bp['Prisc']['drawingContext']['color']['code'];
+            this.__context.strokeStyle = bp['Prisc']['drawingContext']['color']['code'];
         }
     }
 }
