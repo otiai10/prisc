@@ -1,3 +1,6 @@
+/// <reference path="../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="./tools/interface.ts" />
+/// <reference path="./tools/rect.ts" />
 
 module Prisc {
     export interface ICanvasInitOption {
@@ -7,8 +10,14 @@ module Prisc {
     export class Canvas {
 
         public tagId: string = 'canvas';
-        private __canvas: HTMLCanvasElement;
-        private __context: CanvasRenderingContext2D;
+        // TODO: privateのほうがいいんかな
+        public __canvas: HTMLCanvasElement;
+        public __context: CanvasRenderingContext2D;
+        private tool: Tool;
+        private isFingerDown: bool = false;
+
+        public stackedImageData: ImageData[];
+        public stashedImageData: ImageData;
 
         constructor(options: ICanvasInitOption = {}){
             this.tagId = options.tagId || this.tagId;
@@ -39,7 +48,58 @@ module Prisc {
                 // where to end writing
                 self.__canvas.width, self.__canvas.height
             );
+
+            self.startListening();
+
             return self;
+        }
+
+        private startListening() {
+            $(this.__canvas).on('mousedown', (ev: Event) => {
+                this.onFingerDown(ev);
+            });
+            $(this.__canvas).on('mousemove', (ev: Event) => {
+                this.onFingerMove(ev)
+            });
+            $(this.__canvas).on('mouseup', (ev: Event) => {
+                this.onFingerUp(ev);
+            });
+        }
+        private onFingerDown(ev: Event) {
+            // 作業前の状態を確保
+            this.stashedImageData = this.__context.getImageData(
+                0,0,this.__canvas.width, this.__canvas.height
+            );
+            // 作業フラグをオン
+            this.isFingerDown = true;
+            // 使用するツールを決定
+            this.tool = this.determineTool();
+            // 色などのコンテキストを決定
+            this.determineColor();
+            // 開始
+            this.tool.onStart(ev);
+        }
+        private onFingerMove(ev: Event) {
+            // ツール未定義なら無視
+            if (! this.tool) return;
+            // 作業フラグがオフなら無視
+            if (! this.isFingerDown) return;
+
+            this.tool.onMove(ev);
+        }
+        private onFingerUp(ev: Event) {
+            this.tool.onFinish(ev);
+            // 作業フラグを解放
+            this.isFingerDown = false;
+        }
+        private determineTool(): Tool {
+            // FIXME: とりあえずハード
+            return new RectTool(this);
+        }
+        private determineColor() {
+            // FIXME: とりあえずハード
+            this.__context.fillStyle = '#f00';
+            this.__context.strokeStyle = '#00f';
         }
     }
 }
