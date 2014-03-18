@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "Prisc!",
-    "version": "0.0.1",
-    "description": "「プリスク！」はワンクリックでブラウザ画面をスクリーンショット撮るソフトウェアです。最低限の編集もできます。",
+    "version": "0.0.2",
+    "description": "「プリスク！」はワンクリックでブラウザ画面スクリーンショットを撮るソフトウェアです。最低限の編集もできます。",
     "permissions" : [
         "activeTab",
         "downloads"
