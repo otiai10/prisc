@@ -37,8 +37,13 @@ module Prisc {
                 element: canvasElement
             });
             var rate = 0.9;// FIXME: とりあえずハード
-            self.__canvas.width = window.innerWidth * rate;
-            self.__canvas.height = window.innerHeight * rate;
+            var imageAspectRate = img.width / img.height;
+            if (window.innerWidth < img.width) {
+                self.__canvas.height = window.innerHeight * rate;
+            } else {
+                self.__canvas.height = img.height * rate;
+            }
+            self.__canvas.width = self.__canvas.height * imageAspectRate;
             self.__context.drawImage(
                 // source image
                 img,
