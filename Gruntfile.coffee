@@ -14,7 +14,7 @@ module.exports = (grunt) ->
                 namespace: "HBS"
             compile:
                 files:
-                    "build/tpl/all.js": "asset/tpl/**/*.hbs"
+                    "build/tpl/all.js": "tpl/**/*.hbs"
         concat:
             dist:
                 src: [
