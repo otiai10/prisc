@@ -1,5 +1,6 @@
 /// <reference path="../../../../definitions/chrome/chrome.d.ts" />
 /// <reference path="../../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="../../../controller/controller.ts" />
 /// <reference path="../../view.ts" />
 /// <reference path="../../template.ts" />
 
@@ -17,13 +18,7 @@ module Prisc {
         changeColor() {
             // うーん、ここにわたってこないんだっけ
             var val = $('#color-selector').val();
-            var message = {
-                purpose: 'ChangeColor',
-                params: {colorCode: val}
-            };
-            chrome.runtime.sendMessage(message,(response) => {
-                console.log('response???', response);
-            });
+            Controller.sendMessage('ChangeColor',{colorCode:val});
         }
         render(): ContextColorSelectorView {
             this.$el.append(

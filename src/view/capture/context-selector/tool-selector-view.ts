@@ -1,5 +1,6 @@
 /// <reference path="../../../../definitions/chrome/chrome.d.ts" />
 /// <reference path="../../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="../../../controller/controller.ts" />
 /// <reference path="../../view.ts" />
 /// <reference path="../../template.ts" />
 
@@ -18,13 +19,7 @@ module Prisc {
             // うーん、ここにevとかわたってこないんだっけ
             // 渡すだけじゃね？
             var val = $('input[name="drawing-tool"]').filter(':checked').val();
-            var message = {
-                purpose: 'ChangeTool',
-                params: {toolName: val}
-            };
-            chrome.runtime.sendMessage(message,(response) => {
-                console.log('response???', response);
-            });
+            Controller.sendMessage('ChangeTool',{toolName:val});
         }
         render(): ContextToolSelectorView {
             this.$el.append(
