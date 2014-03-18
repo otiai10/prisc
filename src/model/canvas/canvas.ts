@@ -18,7 +18,7 @@ module Prisc {
         private tool: Tool;
         private isFingerDown: bool = false;
 
-        public stackedImageData: ImageData[];
+        public stackedImageData: ImageData[] = [];
         public stashedImageData: ImageData;
         public fontValue: string;
 
@@ -78,6 +78,7 @@ module Prisc {
             this.stashedImageData = this.__context.getImageData(
                 0,0,this.__canvas.width, this.__canvas.height
             );
+            this.pushStack();
             // 作業フラグをオン
             this.isFingerDown = true;
             // 使用するツールを決定
@@ -127,6 +128,19 @@ module Prisc {
         getImageURI(format: string = 'png') {
             var type = 'image/' + format;
             return this.__canvas.toDataURL(type);
+        }
+        pushStack() {
+            // このときの状態を「一つの作業が終了した状態」として保存
+            this.stackedImageData.push(
+                this.__context.getImageData(
+                    0,0,this.__canvas.width,this.__canvas.height
+                )
+            );
+        }
+        undo() {
+            var imageData = this.stackedImageData.pop();
+            if (! imageData) return;
+            this.__context.putImageData(imageData,0,0);
         }
     }
 }

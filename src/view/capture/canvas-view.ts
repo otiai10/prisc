@@ -13,7 +13,8 @@ module Prisc {
         }
         events(): Object {
             return {
-                'click #download-img': 'downloadImageFile'
+                'click #download-img': 'downloadImageFile',
+                'click #undo': 'undo'
             };
         }
         render(): CanvasView {
@@ -30,6 +31,9 @@ module Prisc {
         downloadImageFile() {
             var imageURI = this.canvas.getImageURI();
             Controller.sendMessage('DownloadImage',{imageURI:imageURI})
+        }
+        undo() {
+            this.canvas.undo();
         }
     }
 }
