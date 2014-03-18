@@ -77,6 +77,7 @@ module Prisc {
             this.tool = this.determineTool();
             // 色などのコンテキストを決定
             this.determineColor();
+            this.determineLineWidth();
             // 開始
             this.tool.onStart(ev);
         }
@@ -103,6 +104,10 @@ module Prisc {
             var bp = chrome.extension.getBackgroundPage();
             this.__context.fillStyle = bp['Prisc']['drawingContext']['color']['code'];
             this.__context.strokeStyle = bp['Prisc']['drawingContext']['color']['code'];
+        }
+        private determineLineWidth() {
+            // FIXME: とりあえずハード
+            this.__context.lineWidth = 10;
         }
     }
 }
