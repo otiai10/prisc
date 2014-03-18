@@ -98,7 +98,7 @@ module Prisc {
             this.isFingerDown = false;
         }
         private determineTool(): Tool {
-            var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContest'];
+            var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContext'];
             var toolName = dc.tool;
             // TODO: validation
             return new Prisc[toolName](this);
