@@ -37,6 +37,18 @@ module.exports = (grunt) ->
                 files: ['src/**/*.*', 'tpl/**/*.*']
                 tasks: ['build']
 
+        exec:
+            mkdir:
+                cmd: 'mkdir -p release/build'
+            cpm:
+                cmd: 'cp manifest.json release'
+            cpa:
+                cmd: 'cp -r asset release'
+            cpj:
+                cmd: 'cp build/app.min.js release/build/app.js'
+            zip:
+                cmd: 'zip -r prisc.zip release/*'
+
     grunt.loadNpmTasks 'grunt-typescript'
     grunt.loadNpmTasks 'grunt-contrib-concat'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -46,4 +58,7 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'build', 'build/app(.min).jsをビルドします',['typescript:build', 'handlebars', 'concat:dist', 'uglify:build']
     grunt.registerTask 'watch', '`src/**/*.ts`と`tpl/**/*.ts`を監視しながらビルドします', ['build', 'regarde']
+    grunt.registerTask 'release', 'リリースビルドつくります', ['build','releasecommand']
+    grunt.registerTask 'releasecommand', 'リリース用cli', ['exec:mkdir','exec:cpm','exec:cpa','exec:cpj','exec:zip']
+
     grunt.registerTask 'default', ['build']
