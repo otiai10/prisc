@@ -94,8 +94,10 @@ module Prisc {
             this.isFingerDown = false;
         }
         private determineTool(): Tool {
-            // FIXME: とりあえずハード
-            return new RectTool(this);
+            var bp = chrome.extension.getBackgroundPage();
+            var toolName = bp['Prisc']['drawingContext']['tool'];
+            // TODO: validation
+            return new Prisc[toolName](this);
         }
         private determineColor() {
             var bp = chrome.extension.getBackgroundPage();
