@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Prisc!",
-    "version": "0.0.2",
+    "name": "Prisc! - the easiest way to capture web-page.",
+    "version": "0.0.3",
     "description": "「プリスク！」はワンクリックでブラウザ画面スクリーンショットを撮るソフトウェアです。最低限の編集もできます。",
     "permissions" : [
         "activeTab",
