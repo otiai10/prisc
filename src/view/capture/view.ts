@@ -4,6 +4,7 @@
 /// <reference path="./context-selector/color-selector-view.ts" />
 /// <reference path="./context-selector/tool-selector-view.ts" />
 /// <reference path="./context-selector/font-selector-view.ts" />
+/// <reference path="./context-selector/view.ts" />
 
 module Prisc {
     export class CaptureView extends View {
@@ -13,6 +14,7 @@ module Prisc {
         public toolSelectorView: ContextToolSelectorView;
         public colorSelectorView: ContextColorSelectorView;
         public fontSelectorView: ContextFontSelectorView;
+        public selectorsView: ContextSelectorsView;
         constructor(public imageURI: string) {
             super();
             var d = new Date();
@@ -21,16 +23,20 @@ module Prisc {
             this.toolSelectorView = new ContextToolSelectorView();
             this.colorSelectorView = new ContextColorSelectorView();
             this.fontSelectorView = new ContextFontSelectorView();
+            this.selectorsView = new ContextSelectorsView();
         }
         render(): CaptureView {
             this.$el.append(
                 this.tpl.render({
                     title: this.title
                 }),
+                this.selectorsView.render().$el,
+                this.canvasView.render().$el
+                /*
                 this.toolSelectorView.render().$el,
                 this.colorSelectorView.render().$el,
                 this.fontSelectorView.render().$el,
-                this.canvasView.render().$el
+                */
             );
             return this;
         }
