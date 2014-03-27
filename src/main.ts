@@ -1,8 +1,11 @@
 /// <reference path="../definitions/jquery/jquery.d.ts" />
+/// <reference path="../definitions/chrome/chrome.d.ts" />
 /// <reference path="./controller/controller.ts" />
 /// <reference path="model/drawing-context.ts" />
-
-$(function(){
+chrome.runtime.onInstalled.addListener(() => {
+    Prisc.main();
+});
+chrome.runtime.onStartup.addListener(() => {
     Prisc.main();
 });
 module Prisc {
