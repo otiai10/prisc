@@ -28,7 +28,9 @@ module Prisc {
             );
             return this;
         }
-        downloadImageFile() {
+        downloadImageFile(ev: Event) {
+            ev.preventDefault();
+            ev.stopPropagation();
             var imageURI = this.canvas.getImageURI();
             Controller.sendMessage('DownloadImage',{imageURI:imageURI})
         }
