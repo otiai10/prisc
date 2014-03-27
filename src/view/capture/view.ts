@@ -27,10 +27,10 @@ module Prisc {
                 this.tpl.render({
                     title: this.title
                 }),
-                this.canvasView.render().$el,
-                this.colorSelectorView.render().$el,
                 this.toolSelectorView.render().$el,
-                this.fontSelectorView.render().$el
+                this.colorSelectorView.render().$el,
+                this.fontSelectorView.render().$el,
+                this.canvasView.render().$el
             );
             return this;
         }
