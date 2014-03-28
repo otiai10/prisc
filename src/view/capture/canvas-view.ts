@@ -9,7 +9,10 @@ module Prisc {
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
         constructor(private imageURI: string){
-            super();
+            super({
+                tagName: 'div',
+                className: 'boxy'
+            });
         }
         events(): Object {
             return {

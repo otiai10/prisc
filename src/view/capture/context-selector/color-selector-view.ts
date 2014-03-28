@@ -15,10 +15,8 @@ module Prisc {
                 'change #color-selector': 'changeColor'
             }
         }
-        changeColor() {
-            // うーん、ここにわたってこないんだっけ
-            var val = $('#color-selector').val();
-            Controller.sendMessage('ChangeColor',{colorCode:val});
+        changeColor(ev: JQueryEventObject) {
+            Controller.sendMessage('ChangeColor',{colorCode:ev.target['value']});
         }
         render(): ContextColorSelectorView {
             this.$el.append(

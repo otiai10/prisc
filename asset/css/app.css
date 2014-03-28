@@ -1,0 +1,32 @@
+/**
+ * 極力classだけでデザインをつくる
+ */
+canvas {
+    border: thin solid #000;
+    cursor: pointer;
+}
+canvas:active {
+    cursor: default;
+}
+.clickable {
+    cursor: pointer;
+}
+ol.none, ul.none {
+  list-style: none;
+}
+ol.horizontal li {
+  display: inline;
+}
+ol.canvas-ol {
+  padding-right: 30px;
+}
+ol.side-navi-r {
+  margin-left: 10px;
+}
+ol.side-navi-r>li {
+  margin-bottom: 10px;
+}
+
+.boxy {
+    display: -webkit-box;
+}
