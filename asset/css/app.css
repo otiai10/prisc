@@ -30,3 +30,9 @@ ol.side-navi-r>li {
 .boxy {
     display: -webkit-box;
 }
+input.drawing-tools + img {
+    -webkit-opacity: 0.3;
+}
+input.drawing-tools:checked + img {
+    -webkit-opacity: 1;
+}
