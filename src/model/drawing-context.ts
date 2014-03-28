@@ -48,6 +48,7 @@ module Prisc {
         RectTool,
         PenTool,
         TrimTool,
-        TextTool
+        TextTool,
+        LineTool
     }
 }
