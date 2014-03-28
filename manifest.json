@@ -15,7 +15,7 @@
         "default_icon": "asset/img/icon/icon.128.png"
     },
     "background": {
-        "persistent": false,
+        "persistent": true,
         "scripts": [
             "build/app.js"
         ]
