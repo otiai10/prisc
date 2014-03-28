@@ -49,6 +49,7 @@ module Prisc {
         PenTool,
         TrimTool,
         TextTool,
-        LineTool
+        LineTool,
+        DropperTool
     }
 }
