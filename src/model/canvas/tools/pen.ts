@@ -17,7 +17,6 @@ module Prisc {
                 x: ev.offsetX,
                 y: ev.offsetY
             };
-            this.plot();
         }
         onMove(ev) {
             this.latter = {
