@@ -19,5 +19,6 @@
         "scripts": [
             "build/app.js"
         ]
-    }
+    },
+    "options_page" : "asset/html/app.html?view=Options"
 }
