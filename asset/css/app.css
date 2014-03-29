@@ -1,6 +1,9 @@
 /**
  * 極力classだけでデザインをつくる
  */
+#main {
+    margin: 8px;
+}
 canvas {
     border: thin solid #000;
     cursor: pointer;
@@ -35,4 +38,15 @@ input.drawing-tools + img {
 }
 input.drawing-tools:checked + img {
     -webkit-opacity: 1;
+}
+/**
+ * for {options}
+ */
+.static-page-wrapper {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #eee;
+    -webkit-box-shadow: 1px 1px 5px #999;
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
 }
