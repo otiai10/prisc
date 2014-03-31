@@ -43,7 +43,7 @@ input.drawing-tools:checked + img {
  * for {options}
  */
 .static-page-wrapper {
-    width: 800px;
+    width: 980px;
     margin: 0 auto;
     background-color: #eee;
     -webkit-box-shadow: 1px 1px 5px #999;
