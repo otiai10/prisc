@@ -4,12 +4,13 @@
 
 module Prisc {
     export class OptionHeaderView extends View {
+        private tpl = new HBSTemplate("options/header.hbs");
         constructor() {
             super();
         }
         render(): OptionHeaderView {
             this.$el.append(
-                '<h1>This is options HEADER</h1>'
+                this.tpl.render()
             );
             return this;
         }
