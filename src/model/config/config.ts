@@ -1,6 +1,15 @@
 /// <reference path="../storage-base.ts" />
 
 module Prisc {
+    export enum ImageFormats {
+        png,
+        jpeg
+    }
+    interface IDefaultConfigs {
+        'download-dir-name': string
+        'image-format': ImageFormats
+        'show-file-on-download': boolean
+    }
     class ConfigAccessor extends StorageBase {
         constructor() {
             super("config");
@@ -13,19 +22,19 @@ module Prisc {
             if (Config.accessor == null) Config.accessor = new ConfigAccessor();
             return Config.accessor;
         }
-        private static defaults = {
-            'download-dir-name': 'prisc'
-        }
         public static set(key: string, value: any) {
-            var config = Config.getAccessor().get();
-            if (config == null) config = Config.defaults;
+            var config = Config.getAccessor().get() || Config.defaults;
             config[key] = value;
             return Config.getAccessor().set(config)[key];
         }
         public static get(key: string): any {
-            var config = Config.getAccessor().get();
-            if (config == null) config = Config.defaults;
-            return (typeof config[key] == 'undefined') ? Config.defaults[key] : config[key];
+            var config = Config.getAccessor().get() || Config.defaults;
+            return config[key];
         }
+        private static defaults: IDefaultConfigs = {
+            'download-dir-name'    : 'Prisc',
+            'image-format'         : ImageFormats.png,
+            'show-file-on-download': true
+        };
     }
 }
