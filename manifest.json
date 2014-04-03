@@ -4,8 +4,12 @@
     "version": "0.0.11",
     "description": "「プリスク！」はワンクリックでブラウザ画面スクリーンショットを撮るChrome拡張です。トリミングなど最低限の編集もできます。",
     "permissions" : [
+        "https://api.twitter.com/*",
         "activeTab",
         "downloads"
+    ],
+    "web_accessible_resources": [
+      "chrome_ex_oauth.html*"
     ],
     "icons" : {
         "48"  : "asset/img/icon/icon.48.png",
@@ -17,6 +21,8 @@
     "background": {
         "persistent": true,
         "scripts": [
+            "oauth_lib/chrome_ex_oauth.js",
+            "oauth_lib/chrome_ex_oauthsimple.js",
             "build/app.js"
         ]
     },

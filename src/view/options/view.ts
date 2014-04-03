@@ -1,4 +1,5 @@
 /// <reference path="../../../definitions/chrome/chrome.d.ts" />
+/// <reference path="../../controller/controller.ts" />
 /// <reference path="../view.ts" />
 /// <reference path="../template.ts" />
 /// <reference path="./header-view.ts" />
@@ -23,9 +24,19 @@ module Prisc {
             this.$el.append(
                 this.headerView.render().$el,
                 this.contentsView.render().$el,
+                '<button id="authorize">auth</button>',
                 this.footerView.render().$el
             );
             return this;
+        }
+        events(): Object {
+            return {
+                'click #authorize': 'auth'
+            }
+        }
+        auth() {
+            Controller.sendMessage("TwitterAuthorize");
+            window.close();
         }
     }
 }

@@ -69,7 +69,7 @@ module Prisc {
             return new SampleView();
         }
 
-        public static sendMessage(purpose: string, params: any, callback: (any) => any = (any) => {}) {
+        public static sendMessage(purpose: string, params: any = {}, callback: (any) => any = (any) => {}) {
             var message = $.extend({params:params}, {purpose:purpose});
             chrome.runtime.sendMessage(message, (res) => {
                 callback(res);
