@@ -36,7 +36,7 @@ module Prisc {
             var self = new Canvas({
                 element: canvasElement
             });
-            var rate = 0.9;// FIXME: とりあえずハード
+            var rate = 0.8;// FIXME: とりあえずハード
             var imageAspectRate = img.width / img.height;
             if (window.innerWidth < img.width) {
                 self.__canvas.height = window.innerHeight * rate;

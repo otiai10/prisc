@@ -3,6 +3,7 @@
 /// <reference path="../../controller/controller.ts" />
 /// <reference path="../../model/canvas/canvas.ts" />
 /// <reference path="../../model/config/config.ts" />
+/// <reference path="../../../definitions/jquery/jquery.d.ts" />
 
 module Prisc {
     export class CanvasView extends View {
@@ -22,9 +23,13 @@ module Prisc {
             };
         }
         render(): CanvasView {
+            var d = new Date();
+            var defaultFileName = d.toLocaleString().replace(/[\/\s:]/g,'-');
             this.$el.append(
                 this.tpl.render(),
-                this.fileActionTpl.render()
+                this.fileActionTpl.render({
+                    defaultFileName: defaultFileName
+                })
             );
             this.canvas = Canvas.initWithImageURI(
                 this.imageURI,
@@ -38,7 +43,7 @@ module Prisc {
             var ext = ImageFormats[Config.get('image-format')];
             var format = 'image/' + ext;
             var imageURI = this.canvas.getImageURI(format);
-            var filename = "jQueryを使って取得するなり." + Date.now() + "." + ext.replace('e','');
+            var filename = $("#download-file-name").val() + "." + ext.replace('e','');
             Controller.sendMessage('DownloadImage',{
                 imageURI:imageURI,
                 filename:filename
