@@ -25,18 +25,36 @@ module Prisc {
                 this.headerView.render().$el,
                 this.contentsView.render().$el,
                 '<button id="authorize">auth</button>',
+                '<button id="tweet">tweet</button>',
                 this.footerView.render().$el
             );
             return this;
         }
         events(): Object {
             return {
-                'click #authorize': 'auth'
+                'click #authorize': 'auth',
+                'click #tweet': 'tweet'
             }
         }
         auth() {
             Controller.sendMessage("TwitterAuthorize");
             window.close();
+        }
+        tweet() {
+            var oauth = chrome.extension.getBackgroundPage()['oauth'];
+            var apiUrl = 'https://api.twitter.com/1.1/statuses/update.json';
+            oauth.sendSignedRequest(
+                apiUrl,
+                (response, xhr) => {
+                    console.log(JSON.parse(response));
+                },
+                {
+                    method: "POST",
+                    parameters: {
+                        status: String(Date.now())
+                    }
+                }
+            );
         }
     }
 }
