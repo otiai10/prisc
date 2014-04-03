@@ -2,13 +2,13 @@
 
 ウェブページのスクショをめっちゃ簡単に撮りたいChrome拡張
 
-# 特徴
+# Featrues
 
 - ワンクリックで、今見えているウェブページをキャプチャできます
 - 矩形、ペン、テキスト、切り取りなど、最低限の編集ができます
 - TypeScriptで実装されています
 
-# 開発
+# Development
 ```sh
 % npm install
 % bower install
@@ -16,7 +16,5 @@
 ```
 で、トップディレクトリを拡張として読み込みます
 
-# ちょっとまだ...
-バグある :bow:
-
+# Issues
 https://github.com/otiai10/prisc/issues

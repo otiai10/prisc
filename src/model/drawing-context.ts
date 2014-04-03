@@ -35,7 +35,7 @@ module Prisc {
         }
     }
     export class Color {
-        constructor(public code: string = '#000') {}
+        constructor(public code: string = '#000000') {}
     }
     export class Font {
         constructor(
@@ -48,6 +48,8 @@ module Prisc {
         RectTool,
         PenTool,
         TrimTool,
-        TextTool
+        TextTool,
+        LineTool,
+        DropperTool
     }
 }

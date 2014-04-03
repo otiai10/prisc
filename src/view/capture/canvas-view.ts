@@ -2,6 +2,8 @@
 /// <reference path="../template.ts" />
 /// <reference path="../../controller/controller.ts" />
 /// <reference path="../../model/canvas/canvas.ts" />
+/// <reference path="../../model/config/config.ts" />
+/// <reference path="../../../definitions/jquery/jquery.d.ts" />
 
 module Prisc {
     export class CanvasView extends View {
@@ -9,7 +11,10 @@ module Prisc {
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
         constructor(private imageURI: string){
-            super();
+            super({
+                tagName: 'div',
+                className: 'boxy'
+            });
         }
         events(): Object {
             return {
@@ -18,9 +23,13 @@ module Prisc {
             };
         }
         render(): CanvasView {
+            var d = new Date();
+            var defaultFileName = d.toLocaleString().replace(/[\/\s:]/g,'-');
             this.$el.append(
                 this.tpl.render(),
-                this.fileActionTpl.render()
+                this.fileActionTpl.render({
+                    defaultFileName: defaultFileName
+                })
             );
             this.canvas = Canvas.initWithImageURI(
                 this.imageURI,
@@ -28,9 +37,17 @@ module Prisc {
             );
             return this;
         }
-        downloadImageFile() {
-            var imageURI = this.canvas.getImageURI();
-            Controller.sendMessage('DownloadImage',{imageURI:imageURI})
+        downloadImageFile(ev: Event) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var ext = ImageFormats[Config.get('image-format')];
+            var format = 'image/' + ext;
+            var imageURI = this.canvas.getImageURI(format);
+            var filename = $("#download-file-name").val() + "." + ext.replace('e','');
+            Controller.sendMessage('DownloadImage',{
+                imageURI:imageURI,
+                filename:filename
+            });
         }
         undo() {
             this.canvas.undo();

@@ -1,0 +1,79 @@
+/**
+ * 極力classだけでデザインをつくる
+ */
+#main {
+    margin: 8px;
+}
+canvas {
+    border: thin solid #000;
+    cursor: pointer;
+}
+canvas:active {
+    cursor: default;
+}
+.clickable {
+    cursor: pointer;
+}
+ol.none, ul.none {
+  list-style: none;
+}
+ol.horizontal li {
+  display: inline;
+}
+ol.canvas-ol {
+  padding-right: 30px;
+}
+ol.side-navi-r {
+  margin-left: 10px;
+}
+ol.side-navi-r>li {
+  margin-bottom: 10px;
+}
+
+.boxy {
+    display: -webkit-box;
+}
+input.drawing-tools + img {
+    -webkit-opacity: 0.3;
+}
+input.drawing-tools:checked + img {
+    -webkit-opacity: 1;
+}
+
+a.default {
+    color: #aaa;
+    transition: all 0.1s;
+    text-decoration: none;
+}
+a.default:hover {
+    color: #000;
+}
+/**
+ * for {options}
+ */
+.static-page-wrapper {
+    width: 980px;
+    margin: 0 auto;
+    background-color: #fefefe;
+    -webkit-box-shadow: 1px 1px 5px #ddd;
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+}
+.options-contents {
+    margin-top: 30px;
+}
+.config-title {
+    width: 300px;
+}
+.config-description {
+    font-size: small;
+    width: 470px;
+}
+.config-input {
+    width: 200px;
+}
+.options-footer {
+    margin-top: 30px;
+    /* とりあえず */
+    text-align: right;
+}

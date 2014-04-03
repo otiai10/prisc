@@ -17,20 +17,14 @@ module Prisc {
                 'change #text-font-family':'changeFontFamily'
             }
         }
-        changeFontValue() {
-            // うーん、ここにわたってこないんだっけ
-            var val = $('#text-font-value').val();
-            Controller.sendMessage('ChangeFontValue', {fontValue: val});
+        changeFontValue(ev: JQueryEventObject) {
+            Controller.sendMessage('ChangeFontValue', {fontValue: ev.target['value']});
         }
-        changeFontSize() {
-            // うーん
-            var val = $('#text-font-size').val();
-            Controller.sendMessage('ChangeFontSize', {fontSize: val});
+        changeFontSize(ev: JQueryEventObject) {
+            Controller.sendMessage('ChangeFontSize', {fontSize: ev.target['value']});
         }
-        changeFontFamily() {
-            // うーん
-            var val = $('#text-font-family').val();
-            Controller.sendMessage('ChangeFontFamily', {fontFamily: val});
+        changeFontFamily(ev: JQueryEventObject) {
+            Controller.sendMessage('ChangeFontFamily', {fontFamily: ev.target['value']});
         }
         render(): ContextFontSelectorView {
             this.$el.append(

@@ -12,14 +12,11 @@ module Prisc {
         }
         events(): Object {
             return {
-                'change .drawing-tools': 'changeColor'
+                'change .drawing-tools': 'changeTool'
             }
         }
-        changeColor() {
-            // うーん、ここにevとかわたってこないんだっけ
-            // 渡すだけじゃね？
-            var val = $('input[name="drawing-tool"]').filter(':checked').val();
-            Controller.sendMessage('ChangeTool',{toolName:val});
+        changeTool(ev: JQueryEventObject) {
+            Controller.sendMessage('ChangeTool',{toolName:ev.target['value']});
         }
         render(): ContextToolSelectorView {
             this.$el.append(

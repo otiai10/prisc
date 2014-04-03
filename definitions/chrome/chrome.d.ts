@@ -772,6 +772,7 @@ declare module chrome.downloads {
     export function pause(downloadId: number, callback?: Function): void;
     export function getFileIcon(downloadId: number, callback: (iconURL: string) => void): void;
     export function getFileIcon(downloadId: number, options: GetFileIconOptions, callback: (iconURL: string) => void): void;
+    export function show(downloadId: number): void;
     export function resume(downloadId: number, callback?: Function): void;
     export function cancel(downloadId: number, callback?: Function): void;
     export function download(options: DownloadOptions, callback?: (downloadId: number) => void): void;
