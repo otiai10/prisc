@@ -4,12 +4,15 @@
 
 module Prisc {
     export class OptionFooterView extends View {
+        private tpl = new HBSTemplate("options/footer.hbs");
         constructor() {
-            super();
+            super({
+                className: "options-footer"
+            });
         }
         render(): OptionFooterView {
             this.$el.append(
-                '<h1>This is options FOOTER</h1>'
+                this.tpl.render()
             );
             return this;
         }

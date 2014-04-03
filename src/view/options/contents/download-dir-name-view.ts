@@ -131,7 +131,7 @@ module Prisc {
                 name: "image-format"
             });
             this.list = [
-                {value:ImageFormats.jpeg,label:ImageFormats[ImageFormats.jpeg]},
+                {value:ImageFormats.jpeg,label:ImageFormats[ImageFormats.jpeg].replace('e','')},
                 {value:ImageFormats.png,label:ImageFormats[ImageFormats.png]}
             ];
         }

@@ -39,6 +39,15 @@ input.drawing-tools + img {
 input.drawing-tools:checked + img {
     -webkit-opacity: 1;
 }
+
+a.default {
+    color: #aaa;
+    transition: all 0.1s;
+    text-decoration: none;
+}
+a.default:hover {
+    color: #000;
+}
 /**
  * for {options}
  */
@@ -49,4 +58,22 @@ input.drawing-tools:checked + img {
     -webkit-box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
     text-shadow: 0 1px 0 #fff;
+}
+.options-contents {
+    margin-top: 30px;
+}
+.config-title {
+    width: 300px;
+}
+.config-description {
+    font-size: small;
+    width: 470px;
+}
+.config-input {
+    width: 200px;
+}
+.options-footer {
+    margin-top: 30px;
+    /* とりあえず */
+    text-align: right;
 }

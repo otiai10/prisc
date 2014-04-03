@@ -7,7 +7,9 @@
 module Prisc {
     export class OptionContentsView extends View {
         constructor() {
-            super();
+            super({
+                className: 'options-contents'
+            });
         }
         render(): OptionContentsView {
             var downloadDirNameView = new DownloadDirNameView();
