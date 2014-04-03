@@ -6,9 +6,9 @@ module Prisc {
         jpeg
     }
     interface IDefaultConfigs {
-        'download-dir-name': string
-        'image-format': ImageFormats
-        'show-file-on-download': boolean
+        'download-dir-name': string;
+        'image-format': ImageFormats;
+        'show-file-on-download': boolean;
     }
     class ConfigAccessor extends StorageBase {
         constructor() {

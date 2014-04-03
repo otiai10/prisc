@@ -2,14 +2,21 @@
 /// <reference path="../../view.ts" />
 /// <reference path="../../template.ts" />
 
+/// <reference path="./download-dir-name-view.ts" />
+
 module Prisc {
     export class OptionContentsView extends View {
         constructor() {
             super();
         }
         render(): OptionContentsView {
+            var downloadDirNameView = new DownloadDirNameView();
+            var imageFormatView = new ImageFormatView();
+            var showOnDownloadView = new ShowFileOnDownloadView();
             this.$el.append(
-                '<h1>This is options Contents</h1>'
+                downloadDirNameView.render().$el,
+                showOnDownloadView.render().$el,
+                imageFormatView.render().$el
             );
             return this;
         }

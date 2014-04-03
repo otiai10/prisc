@@ -45,8 +45,8 @@ input.drawing-tools:checked + img {
 .static-page-wrapper {
     width: 980px;
     margin: 0 auto;
-    background-color: #eee;
-    -webkit-box-shadow: 1px 1px 5px #999;
+    background-color: #fefefe;
+    -webkit-box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
     text-shadow: 0 1px 0 #fff;
 }
