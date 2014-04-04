@@ -6,6 +6,7 @@
 /// <reference path="../../../definitions/jquery/jquery.d.ts" />
 
 module Prisc {
+    export var KEYCODE_ENTER: number = 13;
     export class CanvasView extends View {
         public canvas: Canvas;
         private tpl = new HBSTemplate('capture/canvas.hbs');
@@ -19,6 +20,7 @@ module Prisc {
         events(): Object {
             return {
                 'click #download-img': 'downloadImageFile',
+                'keypress #download-file-name': 'bindDownloadShortcut',
                 'click #undo': 'undo'
             };
         }
@@ -36,6 +38,11 @@ module Prisc {
                 <HTMLCanvasElement>this.$el.find('canvas')[0]
             );
             return this;
+        }
+        bindDownloadShortcut(ev: JQueryEventObject) {
+            if(ev.charCode == KEYCODE_ENTER || ev.keyCode == KEYCODE_ENTER) {
+                this.downloadImageFile(ev);
+            }
         }
         downloadImageFile(ev: Event) {
             ev.preventDefault();
