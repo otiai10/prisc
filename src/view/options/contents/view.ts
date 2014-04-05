@@ -15,10 +15,12 @@ module Prisc {
             var downloadDirNameView = new DownloadDirNameView();
             var imageFormatView = new ImageFormatView();
             var showOnDownloadView = new ShowFileOnDownloadView();
+            var onlyCaptureView = new OnlyCaptureView();
             this.$el.append(
                 downloadDirNameView.render().$el,
                 showOnDownloadView.render().$el,
-                imageFormatView.render().$el
+                imageFormatView.render().$el,
+                onlyCaptureView.render().$el
             );
             return this;
         }

@@ -36,7 +36,7 @@ module Prisc {
             'download-dir-name'    : 'Prisc',
             'image-format'         : ImageFormats.png,
             'show-file-on-download': true,
-            'only-capture'         : true
+            'only-capture'         : false
         };
         public static getFileName(defaultFileName: string = String(Date.now())): string {
             return [
