@@ -29,7 +29,7 @@ module Prisc {
         }
         public static get(key: string): any {
             var config = Config.getAccessor().get() || Config.defaults;
-            return config[key];
+            return config[key] || Config.defaults[key];
         }
         private static defaults: IDefaultConfigs = {
             'download-dir-name'    : 'Prisc',
