@@ -21,6 +21,7 @@ module.exports = (grunt) ->
                     'bower_components/jquery/jquery.js'
                     'bower_components/handlebars/handlebars.js'
                     'bower_components/showv/build/showv.js'
+                    'asset/js/app-const.js'
                     'build/tpl/all.js'
                     'build/app.js'
                 ]

@@ -10,6 +10,7 @@ module Prisc {
         'image-format': ImageFormats;
         'show-file-on-download': boolean;
         'only-capture': boolean;
+        'auth-twitter': boolean;
     }
     class ConfigAccessor extends StorageBase {
         constructor() {
@@ -36,7 +37,8 @@ module Prisc {
             'download-dir-name'    : 'Prisc',
             'image-format'         : ImageFormats.png,
             'show-file-on-download': true,
-            'only-capture'         : false
+            'only-capture'         : false,
+            'auth-twitter'         : false
         };
         public static getFileName(defaultFileName: string = String(Date.now())): string {
             return [

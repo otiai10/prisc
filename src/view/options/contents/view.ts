@@ -3,6 +3,7 @@
 /// <reference path="../../template.ts" />
 
 /// <reference path="./download-dir-name-view.ts" />
+/// <reference path="./auth-twitter.ts" />
 
 module Prisc {
     export class OptionContentsView extends View {
@@ -16,11 +17,13 @@ module Prisc {
             var imageFormatView = new ImageFormatView();
             var showOnDownloadView = new ShowFileOnDownloadView();
             var onlyCaptureView = new OnlyCaptureView();
+            var authTwitterView = new AuthTwitterView();
             this.$el.append(
                 downloadDirNameView.render().$el,
                 showOnDownloadView.render().$el,
                 imageFormatView.render().$el,
-                onlyCaptureView.render().$el
+                onlyCaptureView.render().$el,
+                authTwitterView.render().$el
             );
             return this;
         }

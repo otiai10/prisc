@@ -1,4 +1,5 @@
 /// <reference path="../../../definitions/chrome/chrome.d.ts" />
+/// <reference path="../../controller/controller.ts" />
 /// <reference path="../view.ts" />
 /// <reference path="../template.ts" />
 /// <reference path="./header-view.ts" />

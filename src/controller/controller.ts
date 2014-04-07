@@ -69,11 +69,15 @@ module Prisc {
             return new SampleView();
         }
 
-        public static sendMessage(purpose: string, params: any, callback: (any) => any = (any) => {}) {
+        // TODO: callback使ってる場所があるか確認し、Promiseに統一
+        public static sendMessage(purpose: string, params: any = {}, callback: (any) => any = (any) => {}): JQueryPromise<any> {
+            var deferred = $.Deferred();
             var message = $.extend({params:params}, {purpose:purpose});
             chrome.runtime.sendMessage(message, (res) => {
                 callback(res);
+                deferred.resolve(res);
             });
+            return deferred.promise();
         }
     }
 }
