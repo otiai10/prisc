@@ -48,6 +48,9 @@ a.default {
 a.default:hover {
     color: #000;
 }
+img.file-action {
+    width: 20px;
+}
 /**
  * for {options}
  */

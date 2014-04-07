@@ -7,9 +7,8 @@ module Prisc {
         public static STATUS_MAX_LENGTH: number = 140;
         public static SETTINGS_APPLICATION_URL: string = 'https://twitter.com/settings/applications';
         public static alreadyAuthenticated(): boolean {
-            if (localStorage.getItem('oauth_token_secretundefined') == null) return false;
-            if (localStorage.getItem('oauth_tokenundefined') == null) return false;
-            return true;
+            var oauth = chrome.extension.getBackgroundPage()['oauth'];
+            return oauth.hasToken();
         }
         public static authenticate(): JQueryPromise<boolean> {
             return Controller.sendMessage("TwitterAuthorize");
