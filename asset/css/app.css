@@ -112,12 +112,11 @@ a.default:hover {
     background-color: #f0f0f0;
     border-radius: 6px;
 }
-
 /**
  * modal contents
  */
 .modal-contents-twitter img {
-    height: 100px;
+    width: 200px;
     border: 1px solid #dddddd;
     border-radius: 3px;
 }
@@ -183,6 +182,21 @@ a.default:hover {
     text-align: right;
     font-size: 14px;
     text-shadow: 0 1px 1px rgba(255,255,255,.75);
+}
+.tweet-counter.count-over {
+    color: red;
+}
+.tweeted-permalink {
+    margin-top: 5px;
+}
+.tweeted-permalink>a {
+    font-size: small;
+    text-decoration: none;
+    font-weight: bold;
+    color: #33ccff;
+}
+.tweeted-permalink>a:hover {
+    color: #49afcd;
 }
 /* 以下 bootstrap */
 .btn {
