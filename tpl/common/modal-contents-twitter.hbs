@@ -1,0 +1,87 @@
+<div>
+  <div class="modal-header">
+    <h3 class="modal-title" id="global-tweet-dialog-header">ツイートする</h3>
+  </div>
+    <div class="tweet-loading">
+        <div class="spinner-bigger"></div>
+    </div>
+
+    <div class="modal-body modal-tweet" id="global-tweet-dialog-body"></div>
+    <div class="modal-tweet-form-container">
+        <div>
+            <img class="inline-reply-user-image avatar size32" src="https://pbs.twimg.com/profile_images/450840388723412992/upsjPYRr_normal.png" alt="" />
+
+            <div class="tweet-content">
+                <span class="icon add-photo-icon hidden"></span>
+
+                <span class="icon nav-tweet hidden"></span>
+                <span class="tweet-drag-help tweet-drag-photo-here hidden">画像をこちらにドラッグしてください</span>
+                <span class="tweet-drag-help tweet-or-drag-photo-here hidden">または画像をこちらにドラッグしてください</span>
+                <span class="visuallyhidden" id="tweet-box-global-label">ツイート内<br>テキスト</span>
+                <div aria-labelledby="tweet-box-global-label" id="tweet-box-global" class="tweet-box rich-editor  notie" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" aria-autocomplete="list" aria-expanded="false" aria-controls="typeahead-dropdown-5" dir="ltr"><div><br></div></div>
+                <div class="rich-normalizer"><div><br></div></div>
+                <div role="listbox" aria-hidden="true" class="dropdown-menu typeahead" id="typeahead-dropdown-5">
+                    <div aria-hidden="true" class="dropdown-caret">
+                        <div class="caret-outer"></div>
+                        <div class="caret-inner"></div>
+                    </div>
+                    <div role="presentation" class="dropdown-inner js-typeahead-results"><ul role="presentation" class="typeahead-items typeahead-accounts js-typeahead-accounts block0" style="display: none;">
+                        <li role="presentation" class="js-selectable typeahead-accounts-shortcut js-shortcut"><a role="option" class="js-nav" href="" data-search-query="" data-query-source="typeahead_click" data-shortcut="true" data-ds="account_search" id="typeahead-item-0"></a></li>
+                    </ul><ul role="presentation" class="typeahead-items typeahead-topics block1" style="display: none;"></ul></div>
+                </div>
+                <textarea aria-hidden="true" class="tweet-box-shadow" name="status"></textarea>
+                <div class="thumbnail-container">
+                    <div class="preview">
+                        <button type="button" class="dismiss js-dismiss" tabindex="-1">
+                        <span class="icon dismiss-white">
+                          <span class="visuallyhidden">
+                            非表示にする
+                          </span>
+                        </span>
+                        </button>
+                        <span class="filename"></span>
+                    </div>
+                    <div class="preview-message">画像はリンクとして表示されます</div>
+                </div>
+
+            </div>
+
+            <div class="toolbar js-toolbar" role="toolbar">
+                <div class="tweet-box-extras">
+                    <div class="photo-selector">
+                        <button aria-hidden="true" class="btn icon-btn" type="button" tabindex="-1">
+                            <span class="tweet-camera Icon Icon--camera"></span>
+                            <span class="text">画像を追加</span>
+                        </button>
+                        <div class="image-selector">
+                            <input type="hidden" name="media_data[]" class="file-data" value="">
+                            <label>
+                                <span class="visuallyhidden">画像を追加</span>
+                                <input type="file" name="media[]" class="file-input" tabindex="-1">
+                            </label>
+                            <div class="swf-container"></div>
+                        </div>
+                    </div>
+                    <div class="geo-picker">
+                        <button class="btn geo-picker-btn icon-btn" type="button" tabindex="-1">
+                            <span class="Icon Icon--geo"></span>
+                            <span class="text geo-status">位置情報を追加</span>
+                        </button>
+                        <span class="dropdown-container"></span>
+                        <input type="hidden" name="place_id" value="">
+                    </div>
+                </div>
+                <div class="tweet-button">
+                    <span class="spinner"></span>
+                    <span class="tweet-counter">140</span>
+                    <button class="btn primary-btn tweet-action disabled tweet-btn js-tweet-btn" type="button" disabled="disabled">
+                    <span class="button-text tweeting-text">
+                      <span class="Icon Icon--tweet"></span>
+                      ツイート
+                    </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
