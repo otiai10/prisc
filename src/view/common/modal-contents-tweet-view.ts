@@ -9,7 +9,7 @@ module Prisc {
         private tpl = new HBSTemplate('common/modal-contents-twitter.hbs');
         private tweetedPermalinkTpl = new HBSTemplate('common/tweeted-permalink.hbs');
         private embedImageView: EmbedImageView;
-        private status: string;
+        private status: string = '';
         private $counter: JQuery;
         constructor(public imageURI: string) {
             super({
@@ -19,7 +19,6 @@ module Prisc {
         }
         render(): ModalContentsTwitterView {
             this.$el.append(
-                // this.image
                 this.tpl.render()
             );
             this.$el.find('#tweet-image-container').append(
@@ -38,7 +37,7 @@ module Prisc {
             if (! this.validate()) return;
             ev.stopPropagation();
             ev.preventDefault();
-            $(ev.currentTarget).hide();
+            $(ev.currentTarget).replaceWith($('<div class="ajax-loader"></div>'));
             var type_uri = this.imageURI.replace('data:','').split('base64,');
             this.status = $('#js-tweet-box').text();
 

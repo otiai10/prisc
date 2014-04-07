@@ -48,6 +48,32 @@ a.default {
 a.default:hover {
     color: #000;
 }
+@-webkit-keyframes loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+div.ajax-loader {
+    -webkit-animation-name: loading;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    border-left: thin solid #aaa;
+    border-top: thin solid #aaa;
+    border-right: thin solid #aaa;
+    border-bottom: thin solid #f0f0f0;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    margin-left: 90px;
+    margin-right: 40px;
+    position: relative;
+    top: -12px;
+}
+
 img.file-action {
     width: 20px;
 }
