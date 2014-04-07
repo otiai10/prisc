@@ -8,7 +8,7 @@ module Prisc {
         }
     }
     export class ModalView extends showv.View {
-        private static FADE_DURATION: number = 100;
+        private static FADE_DURATION: number = 60;
         private background = '<div id="js-modal-background" class="modal-background clickable">This is modal-background.</div>';
         constructor(public contents: Prisc.View,
                     options: showv.IViewCreateOptions = {
