@@ -42,10 +42,7 @@ module Prisc {
             window.close();
         }
         tweet() {
-            var base64 = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2MU27rtPwMaYBTdvAVTUGzjZiwqN2zCJrgRQxAA6ZEMZRmrHfEAAAAASUVORK5CYII=';
-            // base64 = 'data:image/png;base64,' + base64;
             var oauth = chrome.extension.getBackgroundPage()['oauth'];
-            // var apiUrl = 'https://api.twitter.com/1.1/statuses/update.json';
             var apiUrl = 'https://api.twitter.com/1.1/statuses/update_with_media.json';
             var options = {
                 method: "POST",
@@ -53,24 +50,34 @@ module Prisc {
                     status: String(Date.now()) + "にほんご"
                 }
             };
-            // Get File Object
-            var file = document.querySelector('#myFile')['files'][0];
-            // {{{ Try to create Blob Object
-            var blob = new Blob([base64], {type:'image/png:base64'});
-            // らんぼーだなー
-            // file = blob;
-            // }}}
-            // Create FormData
-            var formData = new FormData;
-            formData.append("media[]", file);
-            // Set it to opt_params.body
-            options['body'] = formData;
             var callback = (response, xhr) => {
                 console.log(JSON.parse(response));
             };
+
+            var base64imageURI = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2MU27rtPwMaYBTdvAVTUGzjZiwqN2zCJrgRQxAA6ZEMZRmrHfEAAAAASUVORK5CYII=';
+            var blob: Blob = this.uri2blob(base64imageURI);
+            // Create FormData
+            var formData = new FormData;
+            formData.append("media[]", blob);
+            // Set it to opt_params.body
+            options['body'] = formData;
             oauth.sendSignedRequest(
                 apiUrl,callback,options
             );
+        }
+        private uri2blob(uri: string): Blob {
+            /*
+            var dataUrl = canvas.toDataURL("image/jpeg");
+            var bin = atob(dataUrl.split("base64,")[1]);
+            */
+            var bin = atob(uri);
+            var len = bin.length;
+            var barr = new Uint8Array(len);
+            for(var i = 0; i<len; i++){
+                barr[i] = bin.charCodeAt(i);
+            }
+            //Blobコンストラクタにより1行で記述できるようになった．
+            return new Blob([barr.buffer], {type: "image/png"});
         }
     }
 }
