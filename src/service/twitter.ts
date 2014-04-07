@@ -1,13 +1,18 @@
 /// <reference path="../../definitions/jquery/jquery.d.ts" />
 /// <reference path="../../definitions/chrome/chrome.d.ts" />
+/// <reference path="../controller/controller.ts" />
 
 module Prisc {
     export class ServiceTwitter {
         public static STATUS_MAX_LENGTH: number = 140;
+        public static SETTINGS_APPLICATION_URL: string = 'https://twitter.com/settings/applications';
         public static alreadyAuthenticated(): boolean {
             if (localStorage.getItem('oauth_token_secretundefined') == null) return false;
             if (localStorage.getItem('oauth_tokenundefined') == null) return false;
             return true;
+        }
+        public static authenticate(): JQueryPromise<boolean> {
+            return Controller.sendMessage("TwitterAuthorize");
         }
         private oauth: any;
         constructor(){
