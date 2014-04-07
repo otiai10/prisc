@@ -41,10 +41,16 @@ module.exports = (grunt) ->
         exec:
             mkdir:
                 cmd: 'mkdir -p release/build'
+            cplib:
+                cmd: 'cp -r oauth_lib release'
+            mvhtml:
+                cmd: 'mv release/oauth_lib/chrome_ex_oauth.html release/'
             cpm:
                 cmd: 'cp manifest.json release'
             cpa:
                 cmd: 'cp -r asset release'
+            rmconst:
+                cmd: 'rm release/asset/js/app-const.*'
             cpj:
                 cmd: 'cp build/app.min.js release/build/app.js'
             zip:
@@ -57,9 +63,9 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-regarde'
     grunt.loadNpmTasks 'grunt-exec'
 
-    grunt.registerTask 'build', 'build/app(.min).jsをビルドします',['typescript:build', 'handlebars', 'concat:dist', 'uglify:build']
+    grunt.registerTask 'build', 'build/app.jsをビルドします',['typescript:build', 'handlebars', 'concat:dist']
     grunt.registerTask 'watch', '`src/**/*.ts`と`tpl/**/*.ts`を監視しながらビルドします', ['build', 'regarde']
-    grunt.registerTask 'release', 'リリースビルドつくります', ['build','releasecommand']
-    grunt.registerTask 'releasecommand', 'リリース用cli', ['exec:mkdir','exec:cpm','exec:cpa','exec:cpj','exec:zip']
+    grunt.registerTask 'release', 'リリースビルドつくります', ['build','uglify:build','releasecommand']
+    grunt.registerTask 'releasecommand', 'リリース用cli', ['exec:mkdir','exec:cplib','exec:mvhtml','exec:cpm','exec:cpa','exec:rmconst','exec:cpj','exec:zip']
 
     grunt.registerTask 'default', ['build']
