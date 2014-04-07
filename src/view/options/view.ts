@@ -42,6 +42,8 @@ module Prisc {
             window.close();
         }
         tweet() {
+            var base64 = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAI0lEQVQIW2MU27rtPwMaYBTdvAVTUGzjZiwqN2zCJrgRQxAA6ZEMZRmrHfEAAAAASUVORK5CYII=';
+            // base64 = 'data:image/png;base64,' + base64;
             var oauth = chrome.extension.getBackgroundPage()['oauth'];
             // var apiUrl = 'https://api.twitter.com/1.1/statuses/update.json';
             var apiUrl = 'https://api.twitter.com/1.1/statuses/update_with_media.json';
@@ -49,13 +51,15 @@ module Prisc {
                 method: "POST",
                 parameters: {
                     status: String(Date.now()) + "にほんご"
-                },
-                headers: {
-                    'Content-Transfer-Encoding': 'BASE64'
                 }
             };
             // Get File Object
             var file = document.querySelector('#myFile')['files'][0];
+            // {{{ Try to create Blob Object
+            var blob = new Blob([base64], {type:'image/png:base64'});
+            // らんぼーだなー
+            // file = blob;
+            // }}}
             // Create FormData
             var formData = new FormData;
             formData.append("media[]", file);
