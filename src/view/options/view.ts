@@ -26,6 +26,7 @@ module Prisc {
                 this.contentsView.render().$el,
                 '<button id="authorize">auth</button>',
                 '<button id="tweet">tweet</button>',
+                '<input type="file" id="myFile" />',
                 this.footerView.render().$el
             );
             return this;
@@ -42,18 +43,29 @@ module Prisc {
         }
         tweet() {
             var oauth = chrome.extension.getBackgroundPage()['oauth'];
-            var apiUrl = 'https://api.twitter.com/1.1/statuses/update.json';
-            oauth.sendSignedRequest(
-                apiUrl,
-                (response, xhr) => {
-                    console.log(JSON.parse(response));
+            // var apiUrl = 'https://api.twitter.com/1.1/statuses/update.json';
+            var apiUrl = 'https://api.twitter.com/1.1/statuses/update_with_media.json';
+            var options = {
+                method: "POST",
+                parameters: {
+                    status: String(Date.now()) + "にほんご"
                 },
-                {
-                    method: "POST",
-                    parameters: {
-                        status: String(Date.now())
-                    }
+                headers: {
+                    'Content-Transfer-Encoding': 'BASE64'
                 }
+            };
+            // Get File Object
+            var file = document.querySelector('#myFile')['files'][0];
+            // Create FormData
+            var formData = new FormData;
+            formData.append("media[]", file);
+            // Set it to opt_params.body
+            options['body'] = formData;
+            var callback = (response, xhr) => {
+                console.log(JSON.parse(response));
+            };
+            oauth.sendSignedRequest(
+                apiUrl,callback,options
             );
         }
     }
