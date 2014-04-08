@@ -1,0 +1,18 @@
+{
+    "framework":"mocha+chai",
+    "before_tests":"grunt test",
+    "src_files":[
+        "src/**/*.ts",
+        "test/**/*.ts"
+    ],
+    "serve_files":[
+        "bower_components/jquery/jquery.js",
+        "bower_components/handlebars/handlebars.js",
+        "bower_components/showv/showv.js",
+        "asset/js/app-const.js",
+        "oauth_lib/**/*.js",
+        "build/tpl/all.js",
+        "build/app.js",
+        "compiled/test/**/*.js"
+    ]
+}
