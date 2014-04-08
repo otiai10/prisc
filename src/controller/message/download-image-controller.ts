@@ -3,15 +3,19 @@
 /// <reference path="../controller.ts" />
 
 module Prisc {
+    export interface IDownloadParams {
+        filename: string;
+        imageURI: string;
+    }
     export class MessageDownloadImageController extends Controller {
         constructor() {
             super();
         }
-        execute(params: Object) {
+        execute(params: IDownloadParams) {
             var dirName = Config.get('download-dir-name'),
-               filename = params['filename'];
+               filename = params.filename;
             chrome.downloads.download({
-                url: params['imageURI'],
+                url: params.imageURI,
                 filename: [dirName, filename].join('/')
             },(downloadId: number) => {
                 if (! Config.get('show-file-on-download')) return;

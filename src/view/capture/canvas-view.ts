@@ -1,4 +1,5 @@
 /// <reference path="../view.ts" />
+/// <reference path="../common/modal-contents-tweet-view.ts" />
 /// <reference path="../template.ts" />
 /// <reference path="../../controller/controller.ts" />
 /// <reference path="../../model/canvas/canvas.ts" />
@@ -21,7 +22,8 @@ module Prisc {
             return {
                 'click #download-img': 'downloadImageFile',
                 'keypress #download-file-name': 'bindDownloadShortcut',
-                'click #undo': 'undo'
+                'click #undo': 'undo',
+                'click #tweet': 'tweet'
             };
         }
         render(): CanvasView {
@@ -58,6 +60,13 @@ module Prisc {
         }
         undo() {
             this.canvas.undo();
+        }
+        tweet() {
+            var ext = ImageFormats[Config.get('image-format')];
+            var format = 'image/' + ext;
+            var imageURI = this.canvas.getImageURI(format);
+            var contents = new Prisc.ModalContentsTwitterView(imageURI);
+            ModalView.showWithContents(contents);
         }
     }
 }

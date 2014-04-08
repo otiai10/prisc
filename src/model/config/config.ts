@@ -9,6 +9,8 @@ module Prisc {
         'download-dir-name': string;
         'image-format': ImageFormats;
         'show-file-on-download': boolean;
+        'only-capture': boolean;
+        'auth-twitter': boolean;
     }
     class ConfigAccessor extends StorageBase {
         constructor() {
@@ -29,12 +31,20 @@ module Prisc {
         }
         public static get(key: string): any {
             var config = Config.getAccessor().get() || Config.defaults;
-            return config[key];
+            return (typeof config[key] != 'undefined') ? config[key] : Config.defaults[key];
         }
         private static defaults: IDefaultConfigs = {
             'download-dir-name'    : 'Prisc',
             'image-format'         : ImageFormats.png,
-            'show-file-on-download': true
+            'show-file-on-download': true,
+            'only-capture'         : false,
+            'auth-twitter'         : false
         };
+        public static getFileName(defaultFileName: string = String(Date.now())): string {
+            return [
+                defaultFileName,
+                ImageFormats[Config.get('image-format')].replace('e','')
+            ].join('.');
+        }
     }
 }

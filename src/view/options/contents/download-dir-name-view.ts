@@ -145,4 +145,13 @@ module Prisc {
             });
         }
     }
+    export class OnlyCaptureView extends ConfigCheckboxInputView {
+        constructor(){
+            super({
+                title:"編集せずキャプチャをダウンロード",
+                description:"編集画面を経由によって画質の劣化があり得ます。これを防ぐためにそのままダウンロードします",
+                name: "only-capture"
+            });
+        }
+    }
 }

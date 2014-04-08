@@ -1,6 +1,7 @@
 /// <reference path="../../definitions/chrome/chrome.d.ts" />
 /// <reference path="../../definitions/jquery/jquery.d.ts" />
 /// <reference path="../../definitions/showv/showv.d.ts" />
+/// <reference path="../model/config/config.ts" />
 /// <reference path="../view/sample-view.ts" />
 /// <reference path="../util/query.ts" />
 /// <reference path="../router/router.ts" />
@@ -25,8 +26,30 @@ module Prisc {
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
             chrome.tabs.captureVisibleTab(windowId, options, (imageURI: string) => {
-                Controller.openCaptureViewByImageURI(imageURI);
+                if (Config.get('only-capture')) Controller.downloadWithoutEditing(imageURI);
+                else Controller.openCaptureViewByImageURI(imageURI);
             });
+        }
+        private static downloadWithoutEditing(imageURI: string) {
+            var dirName = Config.get('download-dir-name'),
+                filename = Config.getFileName();
+            // 以下、Controller.MessageDownloadImageと一緒なので糞い
+            chrome.downloads.download({
+                url: imageURI,
+                filename: [dirName, filename].join('/')
+            },(downloadId: number) => {
+                if (! Config.get('show-file-on-download')) return;
+                var delay = 250;
+                setTimeout(() => {
+                    chrome.downloads.show(downloadId);
+                }, delay);
+            });
+            /* インターフェースの維持のためここでControllerでやりたかった
+            Controller.sendMessage('DownloadImage',{
+                imageURI:imageURI,
+                filename: "hoge"
+            });
+            */
         }
         public static openCaptureViewByImageURI(imageURI: string) {
             var query = new Util.Query({
@@ -46,11 +69,15 @@ module Prisc {
             return new SampleView();
         }
 
-        public static sendMessage(purpose: string, params: any, callback: (any) => any = (any) => {}) {
+        // TODO: callback使ってる場所があるか確認し、Promiseに統一
+        public static sendMessage(purpose: string, params: any = {}, callback: (any) => any = (any) => {}): JQueryPromise<any> {
+            var deferred = $.Deferred();
             var message = $.extend({params:params}, {purpose:purpose});
             chrome.runtime.sendMessage(message, (res) => {
                 callback(res);
+                deferred.resolve(res);
             });
+            return deferred.promise();
         }
     }
 }
