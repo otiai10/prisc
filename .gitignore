@@ -1,5 +1,6 @@
 build
 release
+compiled
 *.zip
 node_modules
 bower_components

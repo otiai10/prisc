@@ -1,13 +1,11 @@
 #!/bin/bash
 
-BRANCH='develop'
 TAP_FILE='report.tap'
-
-git checkout $BRANCH
-git pull origin $BRANCH
 
 source ~/.nvm/nvm.sh
 nvm use 0.10
+
+git config url."https://".insteadOf git://
 
 npm install
 bower install
