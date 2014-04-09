@@ -11,10 +11,4 @@ module Spec {
             true.should.be.true;
         });
     });  
-
-    describe('Sample0', () => {
-        it('ほげえええええ', () => {
-            true.should.be.false;
-        });
-    });
 }
