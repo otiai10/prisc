@@ -11,8 +11,6 @@ source ~/.nvm/nvm.sh
 export PATH=$PATH:~/.phantomjs/bin
 nvm use 0.10
 
-git config url."https://".insteadOf "git://"
-
 npm install
 bower install
 
@@ -24,16 +22,13 @@ testem ci > $TAP_FILE
 NG_COUNT=`cat $TAP_FILE | grep "not ok" | wc -l`
 
 if [ $NG_COUNT -eq 0 ] ; then
-  COMMENT="OK"
+  COMMENT=":+1: OK"
   STATE="success"
 else
-  COMMENT=":shit: NG"
+  NG_BODY=`cat $TAP_FILE | grep "not ok" -A 10`
+  COMMENT=":shit: NG\n\n----------\n"$NG_BODY
   STATE="failure"
 fi
 
-echo $TOKEN
-echo $OWNER
-echo $REPO
-echo $SHA
 curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
 curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
