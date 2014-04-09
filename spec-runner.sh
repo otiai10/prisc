@@ -31,5 +31,9 @@ else
   STATE="failure"
 fi
 
-curl -H "Authorization: token $TOKEN" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
-curl -H "Authorization: token $TOKEN" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
+echo $TOKEN
+echo $OWNER
+echo $REPO
+echo $SHA
+curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
+curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
