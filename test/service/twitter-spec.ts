@@ -11,16 +11,4 @@ module Spec {
             true.should.be.true;
         });
     });  
-
-    describe('Sample00', () => {
-        it('should be fail on purpose', () => {
-            true.should.be.false;
-        });
-    });
-
-    describe('Sample01', () => {
-        it('should be success on purpose', () => {
-            true.should.be.true;
-        });
-    });
 }
