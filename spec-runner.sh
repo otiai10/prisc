@@ -2,9 +2,10 @@
 
 TAP_FILE='report.tap'
 
-OWNER=$1
-REPO=$2
-SHA=$3
+TOKEN=$1
+OWNER=$2
+REPO=$3
+SHA=$4
 
 source ~/.nvm/nvm.sh
 export PATH=$PATH:~/.phantomjs/bin
@@ -30,5 +31,5 @@ else
   STATE="failure"
 fi
 
-curl -H "Authorization: token cf2656ece6c8138c73deb4622d961568cc08d444" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
-curl -H "Authorization: token cf2656ece6c8138c73deb4622d961568cc08d444" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
+curl -H "Authorization: token $TOKEN" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
+curl -H "Authorization: token $TOKEN" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
