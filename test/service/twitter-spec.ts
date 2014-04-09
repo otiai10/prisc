@@ -8,7 +8,7 @@ module Spec {
 
     describe('ServiceTwitter', () => {
         it('should be true', () => {
-            true.should.be.true;
+            true.should.be.false;
         });
     });  
 }
