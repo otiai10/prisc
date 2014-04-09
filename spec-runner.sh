@@ -25,7 +25,8 @@ if [ $NG_COUNT -eq 0 ] ; then
   COMMENT=":+1: OK"
   STATE="success"
 else
-  NG_BODY=`cat $TAP_FILE | grep "not ok" -A 10`
+  # NG_BODY=`cat $TAP_FILE | grep "not ok" -A 10`
+  NG_BODY=`cat $TAP_FILE | grep "not ok"`
   COMMENT=":shit: NG\n\n----------\n"$NG_BODY
   STATE="failure"
 fi
