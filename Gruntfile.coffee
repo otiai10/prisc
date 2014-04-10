@@ -8,7 +8,11 @@ module.exports = (grunt) ->
                     'src/**/*.ts'
                 ]
                 dest: 'build/app.js'
-
+            test:
+                src: [
+                    'test/**/*.ts'
+                ]
+                dest: 'compiled'
         handlebars:
             options:
                 namespace: "HBS"
@@ -56,7 +60,12 @@ module.exports = (grunt) ->
             zip:
                 cmd: 'zip -r prisc.zip release/*'
 
+        clean:
+            all:
+                src: ['compiled/**/*.js', 'compiled/*', 'build/**/*.js']
+
     grunt.loadNpmTasks 'grunt-typescript'
+    grunt.loadNpmTasks 'grunt-contrib-clean'
     grunt.loadNpmTasks 'grunt-contrib-concat'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-handlebars'
@@ -67,5 +76,7 @@ module.exports = (grunt) ->
     grunt.registerTask 'watch', '`src/**/*.ts`と`tpl/**/*.ts`を監視しながらビルドします', ['build', 'regarde']
     grunt.registerTask 'release', 'リリースビルドつくります', ['build','uglify:build','releasecommand']
     grunt.registerTask 'releasecommand', 'リリース用cli', ['exec:mkdir','exec:cplib','exec:mvhtml','exec:cpm','exec:cpa','exec:rmconst','exec:cpj','exec:zip']
+
+    grunt.registerTask 'test', 'テスト用ビルドします',['build','typescript:test']
 
     grunt.registerTask 'default', ['build']
