@@ -8,6 +8,17 @@ REPO=$3
 SHA=$4
 NUMBER=$5
 
+while getopts T:o:r:s:n: OPTION
+do
+    case $OPTION in
+        "T" ) $TOKEN=$OPTARG;;
+        "o" ) $OWNER=$OPTARG;;
+        "r" ) $REPO=$OPTARG;;
+        "s" ) $SHA=$OPTARG;;
+        "n" ) $NUMBER=$OPTARG;;
+    esac
+done
+
 source ~/.nvm/nvm.sh
 export PATH=$PATH:~/.phantomjs/bin
 nvm use 0.10
