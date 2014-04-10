@@ -6,6 +6,7 @@ TOKEN=$1
 OWNER=$2
 REPO=$3
 SHA=$4
+NUMBER=$5
 
 source ~/.nvm/nvm.sh
 export PATH=$PATH:~/.phantomjs/bin
@@ -31,5 +32,5 @@ else
   STATE="failure"
 fi
 
-curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/issues/25/comments -X POST -d "{\"body\":\"$COMMENT\"}"
+curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/issues/$NUMBER/comments -X POST -d "{\"body\":\"$COMMENT\"}"
 curl -H "Authorization: token ${TOKEN}" https://api.github.com/repos/$OWNER/$REPO/statuses/$SHA -X POST -d "{\"state\":\"$STATE\"}"
