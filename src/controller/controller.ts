@@ -56,9 +56,15 @@ module Prisc {
                 view: 'Capture',
                 imageURI: imageURI
             });
+            Controller._log_20140412(imageURI);
             Controller.open({
                 url: Controller.baseURL + query.toString()
             });
+        }
+        private static _log_20140412(imageURI: string) {
+            console.log("ImageURI", imageURI);
+            console.log("LENGTH?", imageURI.length);
+            window.alert("ImageURI.length\t" + imageURI.length);
         }
         public static open(params: chrome.tabs.CreateProperties, callback: (tab: any) => any = (tab: any) => {}) {
             chrome.tabs.create(params, (tab) => {
