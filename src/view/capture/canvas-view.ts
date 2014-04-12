@@ -12,11 +12,21 @@ module Prisc {
         public canvas: Canvas;
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
-        constructor(private imageURI: string){
+        constructor(public imageURI: string){
             super({
                 tagName: 'div',
                 className: 'boxy'
             });
+            this.ensureImageURI();
+        }
+        ensureImageURI() {
+            var query = new Util.Query();
+            var imageURIFromQuery = query.toJSON()['imageURI'];
+            if (imageURIFromQuery) {
+                this.imageURI = imageURIFromQuery;
+            } else {
+                this.imageURI = chrome.extension.getBackgroundPage()['Prisc']['capturedImageURI'];
+            }
         }
         events(): Object {
             return {

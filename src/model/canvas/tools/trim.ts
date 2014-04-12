@@ -34,7 +34,7 @@ module Prisc {
             this.rollback();
 
             var imageURI = this.getTrimmedImageURI();
-            Controller.openCaptureViewByImageURI(imageURI);
+            Controller.openCaptureViewByMessagingUrl(imageURI);
         }
         private rollback() {
             this.canvas.__context.putImageData(
