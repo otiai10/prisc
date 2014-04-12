@@ -11,7 +11,7 @@ module Prisc {
                 className: 'header'
             });
         }
-        render() {
+        render(): CaptureHeaderView {
             var d = new Date();
             var title = d.toLocaleTimeString();
             this.$el.append(
