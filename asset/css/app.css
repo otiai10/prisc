@@ -2,7 +2,6 @@
  * 極力classだけでデザインをつくる
  */
 #main {
-    margin: 8px;
 }
 canvas {
     border: thin solid #000;

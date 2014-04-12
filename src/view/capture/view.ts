@@ -10,19 +10,19 @@
 /// <reference path="./context-selector/tool-selector-view.ts" />
 /// <reference path="./context-selector/font-selector-view.ts" />
 /// <reference path="./context-selector/view.ts" />
+/// <reference path="./header-view.ts" />
 
 module Prisc {
     export class CaptureView extends View {
-        private tpl = new HBSTemplate('capture/main.hbs');
         public title: string;
+        public headerView: CaptureHeaderView;
         public canvasView: CanvasView;
         public selectorsView: ContextSelectorsView;
 
         constructor(public imageURI: string) {
             super();
-            var d = new Date();
-            this.title = d.toLocaleTimeString();
             this.ensureImageURI();
+            this.headerView = new CaptureHeaderView();
             this.canvasView = new CanvasView();
             this.selectorsView = new ContextSelectorsView();
         }
@@ -43,9 +43,7 @@ module Prisc {
         }
         render(): CaptureView {
             this.$el.append(
-                this.tpl.render({
-                    title: this.title
-                }),
+                this.headerView.render().$el,
                 this.selectorsView.render().$el,
                 this.canvasView.render().$el
             );
