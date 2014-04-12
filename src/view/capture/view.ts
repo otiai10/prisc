@@ -17,12 +17,29 @@ module Prisc {
         public title: string;
         public canvasView: CanvasView;
         public selectorsView: ContextSelectorsView;
+
         constructor(public imageURI: string) {
             super();
             var d = new Date();
             this.title = d.toLocaleTimeString();
-            this.canvasView = new CanvasView(this.imageURI);
+            this.ensureImageURI();
+            this.canvasView = new CanvasView();
             this.selectorsView = new ContextSelectorsView();
+        }
+        ensureImageURI() {
+            var query = new Util.Query();
+            var imageURIFromQuery = query.toJSON()['imageURI'];
+            if (imageURIFromQuery) {
+                this.imageURI = imageURIFromQuery;
+            } else {
+                this.imageURI = chrome.extension.getBackgroundPage()['Prisc']['capturedImageURI'];
+            }
+        }
+        ensureCanvasObject(): Canvas {
+            return Canvas.initWithImageURI(
+                this.imageURI,
+                <HTMLCanvasElement>this.$el.find('canvas')[0]
+            );
         }
         render(): CaptureView {
             this.$el.append(
@@ -32,6 +49,8 @@ module Prisc {
                 this.selectorsView.render().$el,
                 this.canvasView.render().$el
             );
+            var canvas = this.ensureCanvasObject();
+            this.canvasView.canvas = canvas;
             this.affectExistingContext();
             return this;
         }
