@@ -6,9 +6,11 @@
 
 module Prisc {
     export class ContextToolSelectorView extends View {
-        private tpl = new HBSTemplate('capture/context-selector/tools.hbs')
+        private tpl = new HBSTemplate('capture/context-selector/tools.hbs');
         constructor() {
-            super();
+            super({
+                className:'canvas-tools-wrapper'
+            });
         }
         events(): Object {
             return {
