@@ -39,7 +39,9 @@ input.drawing-tools + img {
 input.drawing-tools:checked + img {
     -webkit-opacity: 1;
 }
-
+input[type="radio"].hidden {
+    display: none;
+}
 a.default {
     color: #aaa;
     transition: all 0.1s;
