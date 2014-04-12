@@ -8,6 +8,9 @@
 /// <reference path="../router/message-routes.ts" />
 
 module Prisc {
+    // 本当はURLの中で?imageURI=xxxxxxとしてメッセージングしたいが
+    // too long URL 制限がかかってバグる
+    export var capturedImageURI: string;
     export class Controller {
         private static baseURL = 'asset/html/app.html';
         constructor(public controllerName: string = ""){}
@@ -27,7 +30,7 @@ module Prisc {
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
             chrome.tabs.captureVisibleTab(windowId, options, (imageURI: string) => {
                 if (Config.get('only-capture')) Controller.downloadWithoutEditing(imageURI);
-                else Controller.openCaptureViewByImageURI(imageURI);
+                else Controller.openCaptureByMessagingBackgroundPage(imageURI);
             });
         }
         private static downloadWithoutEditing(imageURI: string) {
@@ -51,7 +54,18 @@ module Prisc {
             });
             */
         }
-        public static openCaptureViewByImageURI(imageURI: string) {
+        public static openCaptureByMessagingBackgroundPage(imageURI: string) {
+            var query = new Util.Query({
+                view: 'Capture'
+                // `too long url`
+                // imageURI: imageURI
+            });
+            Prisc.capturedImageURI = imageURI;
+            Controller.open({
+                url: Controller.baseURL + query.toString()
+            });
+        }
+        public static openCaptureViewByMessagingUrl(imageURI: string) {
             var query = new Util.Query({
                 view: 'Capture',
                 imageURI: imageURI
