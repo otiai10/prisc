@@ -1,21 +1,25 @@
 /// <reference path="../view.ts" />
+/// <reference path="./context-selector/color-selector-view.ts" />
+/// <reference path="./context-selector/font-selector-view.ts" />
 /// <reference path="../template.ts" />
 /// <reference path="../../model/canvas/canvas.ts" />
 
 module Prisc {
     export class CaptureFooterView extends View {
         public canvas: Canvas;
-        private tpl = new HBSTemplate('capture/header.hbs');
+        private colorSelectorView: ContextColorSelectorView;
+        private fontSelectorView: ContextFontSelectorView;
         constructor(){
             super({
-                className: 'footer'
+                className: 'footer boxy'
             });
+            this.colorSelectorView = new ContextColorSelectorView();
+            this.fontSelectorView = new ContextFontSelectorView();
         }
         render(): CaptureFooterView {
-            var d = new Date();
-            var title = d.toLocaleTimeString();
             this.$el.append(
-                this.tpl.render({title: title})
+                this.colorSelectorView.render().$el,
+                this.fontSelectorView.render().$el
             );
             return this;
         }

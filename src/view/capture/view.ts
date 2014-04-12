@@ -9,7 +9,6 @@
 /// <reference path="./context-selector/color-selector-view.ts" />
 /// <reference path="./context-selector/tool-selector-view.ts" />
 /// <reference path="./context-selector/font-selector-view.ts" />
-/// <reference path="./context-selector/view.ts" />
 /// <reference path="./header-view.ts" />
 /// <reference path="./footer-view.ts" />
 
@@ -18,15 +17,17 @@ module Prisc {
         public title: string;
         public headerView: CaptureHeaderView;
         public canvasView: CanvasView;
-        public selectorsView: ContextSelectorsView;
+        // public selectorsView: ContextSelectorsView;
         public footerView: CaptureFooterView;
 
         constructor(public imageURI: string) {
             super();
+            var d = new Date();
+            this.title = d.toLocaleTimeString();
             this.ensureImageURI();
             this.headerView = new CaptureHeaderView();
             this.canvasView = new CanvasView();
-            this.selectorsView = new ContextSelectorsView();
+            // this.selectorsView = new ContextSelectorsView();
             this.footerView = new CaptureFooterView();
         }
         ensureImageURI() {
@@ -47,7 +48,7 @@ module Prisc {
         render(): CaptureView {
             this.$el.append(
                 this.headerView.render().$el,
-                this.selectorsView.render().$el,
+                // this.selectorsView.render().$el,
                 this.canvasView.render().$el,
                 this.footerView.render().$el
             );

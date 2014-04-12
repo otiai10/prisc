@@ -5,6 +5,7 @@
 /// <reference path="../../model/canvas/canvas.ts" />
 /// <reference path="../../model/config/config.ts" />
 /// <reference path="../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="./context-selector/view.ts" />
 
 module Prisc {
     export var KEYCODE_ENTER: number = 13;
@@ -13,11 +14,14 @@ module Prisc {
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
 
+        private selectorView: ContextSelectorsView;
+
         constructor(){
             super({
                 tagName: 'div',
                 className: 'boxy'
             });
+            this.selectorView = new ContextSelectorsView();
         }
         events(): Object {
             return {
@@ -31,6 +35,7 @@ module Prisc {
             var d = new Date();
             var defaultFileName = d.toLocaleString().replace(/[\/\s:]/g,'-');
             this.$el.append(
+                this.selectorView.render().$el,
                 this.tpl.render(),
                 this.fileActionTpl.render({
                     defaultFileName: defaultFileName
