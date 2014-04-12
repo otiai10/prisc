@@ -11,6 +11,7 @@
 /// <reference path="./context-selector/font-selector-view.ts" />
 /// <reference path="./context-selector/view.ts" />
 /// <reference path="./header-view.ts" />
+/// <reference path="./footer-view.ts" />
 
 module Prisc {
     export class CaptureView extends View {
@@ -18,6 +19,7 @@ module Prisc {
         public headerView: CaptureHeaderView;
         public canvasView: CanvasView;
         public selectorsView: ContextSelectorsView;
+        public footerView: CaptureFooterView;
 
         constructor(public imageURI: string) {
             super();
@@ -25,6 +27,7 @@ module Prisc {
             this.headerView = new CaptureHeaderView();
             this.canvasView = new CanvasView();
             this.selectorsView = new ContextSelectorsView();
+            this.footerView = new CaptureFooterView();
         }
         ensureImageURI() {
             var query = new Util.Query();
@@ -45,7 +48,8 @@ module Prisc {
             this.$el.append(
                 this.headerView.render().$el,
                 this.selectorsView.render().$el,
-                this.canvasView.render().$el
+                this.canvasView.render().$el,
+                this.footerView.render().$el
             );
             var canvas = this.ensureCanvasObject();
             this.canvasView.canvas = canvas;
