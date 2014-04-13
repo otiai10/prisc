@@ -9,31 +9,57 @@
 /// <reference path="./context-selector/color-selector-view.ts" />
 /// <reference path="./context-selector/tool-selector-view.ts" />
 /// <reference path="./context-selector/font-selector-view.ts" />
-/// <reference path="./context-selector/view.ts" />
+/// <reference path="./header-view.ts" />
+/// <reference path="./footer-view.ts" />
 
 module Prisc {
     export class CaptureView extends View {
-        private tpl = new HBSTemplate('capture/main.hbs');
         public title: string;
+        public headerView: CaptureHeaderView;
         public canvasView: CanvasView;
-        public selectorsView: ContextSelectorsView;
+        // public selectorsView: ContextSelectorsView;
+        public footerView: CaptureFooterView;
+
         constructor(public imageURI: string) {
             super();
             var d = new Date();
             this.title = d.toLocaleTimeString();
-            this.canvasView = new CanvasView(this.imageURI);
-            this.selectorsView = new ContextSelectorsView();
+            this.ensureImageURI();
+            this.headerView = new CaptureHeaderView();
+            this.canvasView = new CanvasView();
+            // this.selectorsView = new ContextSelectorsView();
+            this.footerView = new CaptureFooterView();
+        }
+        ensureImageURI() {
+            var query = new Util.Query();
+            var imageURIFromQuery = query.toJSON()['imageURI'];
+            if (imageURIFromQuery) {
+                this.imageURI = imageURIFromQuery;
+            } else {
+                this.imageURI = chrome.extension.getBackgroundPage()['Prisc']['capturedImageURI'];
+            }
+        }
+        ensureCanvasObject(): Canvas {
+            return Canvas.initWithImageURI(
+                this.imageURI,
+                <HTMLCanvasElement>this.$el.find('canvas')[0]
+            );
         }
         render(): CaptureView {
             this.$el.append(
-                this.tpl.render({
-                    title: this.title
-                }),
-                this.selectorsView.render().$el,
-                this.canvasView.render().$el
+                this.headerView.render().$el,
+                // this.selectorsView.render().$el,
+                this.canvasView.render().$el,
+                this.footerView.render().$el
             );
+            this.giveCanvasToChildren();
             this.affectExistingContext();
             return this;
+        }
+        giveCanvasToChildren() {
+            var canvas = this.ensureCanvasObject();
+            this.canvasView.canvas = canvas;
+            this.canvasView.selectorView.toolSelectorView.canvas = canvas;
         }
         affectExistingContext() {
             var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContext'];

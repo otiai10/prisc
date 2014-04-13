@@ -8,7 +8,9 @@ module Prisc {
     export class ContextFontSelectorView extends View {
         private tpl = new HBSTemplate('capture/context-selector/font.hbs')
         constructor() {
-            super();
+            super({
+                className: 'drawing-context-element'
+            });
         }
         events(): Object {
             return {

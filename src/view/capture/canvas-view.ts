@@ -5,6 +5,7 @@
 /// <reference path="../../model/canvas/canvas.ts" />
 /// <reference path="../../model/config/config.ts" />
 /// <reference path="../../../definitions/jquery/jquery.d.ts" />
+/// <reference path="./context-selector/view.ts" />
 
 module Prisc {
     export var KEYCODE_ENTER: number = 13;
@@ -12,27 +13,20 @@ module Prisc {
         public canvas: Canvas;
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
-        constructor(public imageURI: string){
+
+        public selectorView: ContextSelectorsView;
+
+        constructor(){
             super({
                 tagName: 'div',
-                className: 'boxy'
+                className: 'boxy canvas-middle-contents'
             });
-            this.ensureImageURI();
-        }
-        ensureImageURI() {
-            var query = new Util.Query();
-            var imageURIFromQuery = query.toJSON()['imageURI'];
-            if (imageURIFromQuery) {
-                this.imageURI = imageURIFromQuery;
-            } else {
-                this.imageURI = chrome.extension.getBackgroundPage()['Prisc']['capturedImageURI'];
-            }
+            this.selectorView = new ContextSelectorsView();
         }
         events(): Object {
             return {
                 'click #download-img': 'downloadImageFile',
                 'keypress #download-file-name': 'bindDownloadShortcut',
-                'click #undo': 'undo',
                 'click #tweet': 'tweet'
             };
         }
@@ -40,14 +34,11 @@ module Prisc {
             var d = new Date();
             var defaultFileName = d.toLocaleString().replace(/[\/\s:]/g,'-');
             this.$el.append(
+                this.selectorView.render().$el,
                 this.tpl.render(),
                 this.fileActionTpl.render({
                     defaultFileName: defaultFileName
                 })
-            );
-            this.canvas = Canvas.initWithImageURI(
-                this.imageURI,
-                <HTMLCanvasElement>this.$el.find('canvas')[0]
             );
             return this;
         }
@@ -67,9 +58,6 @@ module Prisc {
                 imageURI:imageURI,
                 filename:filename
             });
-        }
-        undo() {
-            this.canvas.undo();
         }
         tweet() {
             var ext = ImageFormats[Config.get('image-format')];

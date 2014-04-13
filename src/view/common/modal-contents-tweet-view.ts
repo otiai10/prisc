@@ -56,7 +56,7 @@ module Prisc {
         }
         onSuccess(res: Object) {
             var url = ServiceTwitter.getPermalinkFromSuccessResponse(res);
-            $('#main').append(
+            $('div#tweeted-permalink-container').append(
                 this.tweetedPermalinkTpl.render({url:url})
             );
             ModalView.cancel();
