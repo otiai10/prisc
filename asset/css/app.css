@@ -265,6 +265,9 @@ div.footer>h1 {
 .tweet-counter.count-over {
     color: red;
 }
+div#tweeted-permalink-container {
+    float: right;
+}
 .tweeted-permalink {
     margin-top: 5px;
 }
