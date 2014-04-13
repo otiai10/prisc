@@ -8,7 +8,9 @@ module Prisc {
     export class ContextColorSelectorView extends View {
         private tpl = new HBSTemplate('capture/context-selector/color.hbs')
         constructor() {
-            super();
+            super({
+                className: 'drawing-context-element'
+            });
         }
         events(): Object {
             return {

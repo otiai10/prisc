@@ -1,6 +1,9 @@
 /**
  * 極力classだけでデザインをつくる
  */
+html {
+    background-color: rgba(236,236,236,1);
+}
 #main {
 }
 canvas {
@@ -8,7 +11,7 @@ canvas {
     cursor: pointer;
     margin: 20px 40px;
     margin-right: 10px;
-    box-shadow: -2px 2px 3px rgba(200,200,200,1);
+    box-shadow: -2px 2px 5px rgba(171,171,171,1);
 }
 canvas:active {
     cursor: default;
@@ -18,6 +21,9 @@ canvas:active {
 }
 ol.none, ul.none {
   list-style: none;
+}
+ol.horizontal {
+    margin: 0;
 }
 ol.horizontal li {
   display: inline;
@@ -40,6 +46,9 @@ input.drawing-tools:checked + img {
 }
 input[type="radio"].hidden {
     display: none;
+}
+div.drawing-context-element {
+    margin-right: 10px;
 }
 a.default {
     color: #aaa;
@@ -83,7 +92,7 @@ img.file-action {
  */
 .static-page-wrapper {
     width: 980px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #fefefe;
     -webkit-box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
@@ -144,7 +153,7 @@ img.file-action {
 }
 div.header {
     padding: 5px;
-    padding-left: 20px;
+    padding-left: 64px;
     border-bottom: thin solid #8899a6;
     background-color: rgba(236,236,236,1);
 }
@@ -152,19 +161,25 @@ div.header>h1 {
     font-size: 1.2em;
     color: #8899a6;
 }
+div.canvas-middle-contents {
+    background-color: #fff;
+}
 ol.canvas-ol>li {
     margin-bottom: 10px;
 }
 div.canvas-tools-wrapper {
     background-color: rgba(236,236,236,1);
     padding: 20px;
+    padding-top: 6px;
 }
 div.canvas-container {
+    background-color: #fff;
     border-left: thin solid #8899a6;
     position: relative;
 }
 div.footer {
     padding: 5px;
+    padding-left: 64px;
     border-top: thin solid #8899a6;
     background-color: rgba(236,236,236,1);
 }

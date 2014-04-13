@@ -19,7 +19,7 @@ module Prisc {
         constructor(){
             super({
                 tagName: 'div',
-                className: 'boxy'
+                className: 'boxy canvas-middle-contents'
             });
             this.selectorView = new ContextSelectorsView();
         }
