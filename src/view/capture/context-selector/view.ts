@@ -1,3 +1,5 @@
+/// <reference path="../../view.ts" />
+/// <reference path="./tool-selector-view.ts" />
 
 module Prisc {
     export class ContextSelectorsView extends View{

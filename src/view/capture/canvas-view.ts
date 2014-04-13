@@ -14,7 +14,7 @@ module Prisc {
         private tpl = new HBSTemplate('capture/canvas.hbs');
         private fileActionTpl = new HBSTemplate('capture/file-action.hbs');
 
-        private selectorView: ContextSelectorsView;
+        public selectorView: ContextSelectorsView;
 
         constructor(){
             super({
@@ -27,7 +27,6 @@ module Prisc {
             return {
                 'click #download-img': 'downloadImageFile',
                 'keypress #download-file-name': 'bindDownloadShortcut',
-                'click #undo': 'undo',
                 'click #tweet': 'tweet'
             };
         }
@@ -59,9 +58,6 @@ module Prisc {
                 imageURI:imageURI,
                 filename:filename
             });
-        }
-        undo() {
-            this.canvas.undo();
         }
         tweet() {
             var ext = ImageFormats[Config.get('image-format')];

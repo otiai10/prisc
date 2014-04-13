@@ -52,10 +52,14 @@ module Prisc {
                 this.canvasView.render().$el,
                 this.footerView.render().$el
             );
-            var canvas = this.ensureCanvasObject();
-            this.canvasView.canvas = canvas;
+            this.giveCanvasToChildren();
             this.affectExistingContext();
             return this;
+        }
+        giveCanvasToChildren() {
+            var canvas = this.ensureCanvasObject();
+            this.canvasView.canvas = canvas;
+            this.canvasView.selectorView.toolSelectorView.canvas = canvas;
         }
         affectExistingContext() {
             var dc = chrome.extension.getBackgroundPage()['Prisc']['drawingContext'];

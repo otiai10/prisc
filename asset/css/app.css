@@ -29,7 +29,7 @@ ol.horizontal li {
   display: inline;
 }
 ol.side-navi-r {
-  margin-left: 10px;
+  margin: 20px 10px;
 }
 ol.side-navi-r>li {
   margin-bottom: 10px;
@@ -171,6 +171,10 @@ div.canvas-tools-wrapper {
     background-color: rgba(236,236,236,1);
     padding: 20px;
     padding-top: 6px;
+}
+hr.tool-separator {
+    margin-bottom: 20px;
+    border-bottom: thin solid #8899a6;
 }
 div.canvas-container {
     background-color: #fff;
