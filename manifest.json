@@ -26,5 +26,16 @@
             "build/app.js"
         ]
     },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S",
+                "windows": "Ctrl+Shift+S",
+                "mac": "Command+Shift+S",
+                "chromeos": "Ctrl+Shift+S",
+                "linux": "Ctrl+Shift+S"
+            }
+        }
+    },
     "options_page" : "asset/html/app.html?view=Options"
 }
