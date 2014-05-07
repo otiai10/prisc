@@ -6,6 +6,7 @@
 /// <reference path="../util/query.ts" />
 /// <reference path="../router/router.ts" />
 /// <reference path="../router/message-routes.ts" />
+/// <reference path="../router/api-routes.ts" />
 
 module Prisc {
     // 本当はURLの中で?imageURI=xxxxxxとしてメッセージングしたいが
@@ -25,6 +26,11 @@ module Prisc {
             chrome.runtime.onMessage.addListener((messageObj: Object, sender: any, sendResponse: (any) => any) => {
                 var message = Message.factory(messageObj);
                 Router.message(message);
+            });
+            chrome.runtime.onMessageExternal.addListener(
+                (messageObj: Object, sender: any, sendResponse: (any) => any) => {
+                    var call = Call.factory(messageObj);
+                    Router.call(call);
             });
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
