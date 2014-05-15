@@ -8,3 +8,7 @@ before_script:
   - "bower install"
 script:
   - "testem ci"
+branches:
+  only:
+    - develop
+    - master
