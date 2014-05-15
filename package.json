@@ -14,5 +14,8 @@
     "grunt-exec": "~0.4.2",
     "grunt-git": "~0.1.2",
     "grunt-json-minify": "~0.4.0"
+  },
+  "scripts" : {
+      "test" : "testem ci"
   }
 }

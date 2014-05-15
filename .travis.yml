@@ -11,7 +11,7 @@ before_script:
   - "bower install"
   - "grunt test"
 script:
-  - "testem ci"
+  - "npm run-script test"
 branches:
   only:
     - develop
