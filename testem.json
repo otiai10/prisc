@@ -15,7 +15,7 @@
         "build/app.js",
         "compiled/test/**/*.js"
     ],
-    "launchers_in_ci":[
+    "launch_in_ci":[
         "Chrome"
     ]
 }
