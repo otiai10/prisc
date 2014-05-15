@@ -14,5 +14,8 @@
         "build/tpl/all.js",
         "build/app.js",
         "compiled/test/**/*.js"
+    ],
+    "launchers":[
+        "Chrome"
     ]
 }
