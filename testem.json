@@ -16,6 +16,6 @@
         "compiled/test/**/*.js"
     ],
     "launch_in_ci":[
-        "Chrome"
+        "Chromium"
     ]
 }
