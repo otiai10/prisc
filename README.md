@@ -2,6 +2,8 @@
 
 ウェブページのスクショをめっちゃ簡単に撮りたいChrome拡張
 
+[![Build Status](https://travis-ci.org/otiai10/prisc.svg)](https://travis-ci.org/otiai10/prisc)
+
 # Features
 
 - ワンクリックで、今見えているウェブページをキャプチャできます

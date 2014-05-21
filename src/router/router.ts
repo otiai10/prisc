@@ -3,6 +3,7 @@
 /// <reference path="../util/query.ts" />
 /// <reference path="./query-routes" />
 /// <reference path="./message-routes.ts" />
+/// <reference path="./api-routes.ts" />
 
 module Prisc {
     export class Router {
@@ -15,6 +16,10 @@ module Prisc {
         public static message(message: Message): any/* View? */{
             var controller = MessageRoutes.match(message.purpose);
             return controller.execute(message.params);
+        }
+        public static call(call: Call): any {
+            var controller = ApiRoutes.match(call.path);
+            return controller.execute(call.params);
         }
     }
 }

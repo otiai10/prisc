@@ -1,12 +1,17 @@
 /**
  * 極力classだけでデザインをつくる
  */
+html {
+    background-color: rgba(236,236,236,1);
+}
 #main {
-    margin: 8px;
 }
 canvas {
     border: thin solid #000;
     cursor: pointer;
+    margin: 20px 40px;
+    margin-right: 10px;
+    box-shadow: -2px 2px 5px rgba(171,171,171,1);
 }
 canvas:active {
     cursor: default;
@@ -17,14 +22,14 @@ canvas:active {
 ol.none, ul.none {
   list-style: none;
 }
+ol.horizontal {
+    margin: 0;
+}
 ol.horizontal li {
   display: inline;
 }
-ol.canvas-ol {
-  padding-right: 30px;
-}
 ol.side-navi-r {
-  margin-left: 10px;
+  margin: 20px 10px;
 }
 ol.side-navi-r>li {
   margin-bottom: 10px;
@@ -39,7 +44,12 @@ input.drawing-tools + img {
 input.drawing-tools:checked + img {
     -webkit-opacity: 1;
 }
-
+input[type="radio"].hidden {
+    display: none;
+}
+div.drawing-context-element {
+    margin-right: 10px;
+}
 a.default {
     color: #aaa;
     transition: all 0.1s;
@@ -82,7 +92,7 @@ img.file-action {
  */
 .static-page-wrapper {
     width: 980px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #fefefe;
     -webkit-box-shadow: 1px 1px 5px #ddd;
     padding: 10px;
@@ -140,6 +150,46 @@ img.file-action {
     width: 520px;
     background-color: #f0f0f0;
     border-radius: 6px;
+}
+div.header {
+    padding: 5px;
+    padding-left: 64px;
+    border-bottom: thin solid #8899a6;
+    background-color: rgba(236,236,236,1);
+}
+div.header>h1 {
+    font-size: 1.2em;
+    color: #8899a6;
+}
+div.canvas-middle-contents {
+    background-color: #fff;
+}
+ol.canvas-ol>li {
+    margin-bottom: 10px;
+}
+div.canvas-tools-wrapper {
+    background-color: rgba(236,236,236,1);
+    padding: 20px;
+    padding-top: 6px;
+}
+hr.tool-separator {
+    margin-bottom: 20px;
+    border-bottom: thin solid #8899a6;
+}
+div.canvas-container {
+    background-color: #fff;
+    border-left: thin solid #8899a6;
+    position: relative;
+}
+div.footer {
+    padding: 5px;
+    padding-left: 64px;
+    border-top: thin solid #8899a6;
+    background-color: rgba(236,236,236,1);
+}
+div.footer>h1 {
+    font-size: 1.2em;
+    color: #8899a6;
 }
 /**
  * modal contents
@@ -214,6 +264,9 @@ img.file-action {
 }
 .tweet-counter.count-over {
     color: red;
+}
+div#tweeted-permalink-container {
+    float: right;
 }
 .tweeted-permalink {
     margin-top: 5px;
