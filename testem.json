@@ -12,10 +12,12 @@
         "asset/js/app-const.js",
         "oauth_lib/**/*.js",
         "build/tpl/all.js",
-        "build/app.js",
         "compiled/test/**/*.js"
     ],
+    "launch_in_dev":[
+        "PhantomJS"
+    ],
     "launch_in_ci":[
-        "Chrome"
+        "PhantomJS"
     ]
 }
