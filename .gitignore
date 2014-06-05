@@ -11,3 +11,6 @@ report.tap
 *.iml
 
 asset/js/app-const.js
+/bower.json
+/testem.json
+/Gruntfile.coffee
