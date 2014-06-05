@@ -5,6 +5,7 @@ install:
   - "npm install -g bower"
   - "npm install -g testem"
   - "npm install -g grunt-cli"
+  - "npm install -g chest"
 before_script:
   - npm install
   - bower install
