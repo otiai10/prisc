@@ -10,7 +10,6 @@ module Prisc {
         execute(params: Object): JQueryPromise<boolean> {
             var deferred = $.Deferred();
             var imgURI = params['imgURI'];
-            console.log("In ApiOpenEditController", params);
             if (! imgURI) window.alert("ImageURI is not defined!\n" + JSON.stringify(params));
             Controller.openCaptureViewByMessagingUrl(imgURI);
             return deferred.promise();
