@@ -27,13 +27,10 @@ module Prisc {
                 var message = Message.factory(messageObj);
                 Router.message(message);
             });
-            console.log("[000]", "before onMessageExternal");
             chrome.runtime.onMessageExternal.addListener(
                 (messageObj: Object, sender: any, sendResponse: (any) => any) => {
-                    console.log("[001]", "onMessageExternal fired", messageObj, sender);
-                    var called = Call.factory(messageObj);
-                    console.log("[002]", "call constructed", called);
-                    Router.callAPI(called);
+                    var call = Call.factory(messageObj);
+                    Router.call(call);
             });
         }
         capture(windowId: number, options: chrome.tabs.CaptureVisibleTabOptions) {
@@ -75,20 +72,16 @@ module Prisc {
             });
         }
         public static openCaptureViewByMessagingUrl(imageURI: string) {
-            console.log("[011]", "openCaptureViewByMessagingUrl", imageURI);
             var query = new Util.Query({
                 view: 'Capture',
                 imageURI: imageURI
             });
-            console.log("[012]", "openCaptureViewByMessagingUrl", query, query.toString());
             Controller.open({
                 url: Controller.baseURL + query.toString()
             });
         }
         public static open(params: chrome.tabs.CreateProperties, callback: (tab: any) => any = (tab: any) => {}) {
-            console.log("[013]", "open", params);
             chrome.tabs.create(params, (tab) => {
-                console.log("[014]", "chrome.tab.create created", tab);
                 callback(tab);
             });
         }

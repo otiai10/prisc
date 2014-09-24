@@ -17,11 +17,9 @@ module Prisc {
             var controller = MessageRoutes.match(message.purpose);
             return controller.execute(message.params);
         }
-        public static callAPI(called: Call): any {
-            console.log("[003]", "in Router.callAPI", called);
-            var controller = ApiRoutes.match(called.path);
-            console.log("[008]", "in Router.callAPI controller constructed", controller);
-            return controller.execute(called.params);
+        public static call(call: Call): any {
+            var controller = ApiRoutes.match(call.path);
+            return controller.execute(call.params);
         }
     }
 }
