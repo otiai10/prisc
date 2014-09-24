@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Prisc!",
-    "version": "0.2.1.1",
+    "version": "0.2.1.2",
     "description": "「プリスク！」はワンクリックでブラウザ画面スクリーンショットを撮るChrome拡張です。トリミングなど最低限の編集、およびTwitterへの画像付き投稿ができます。",
     "permissions" : [
         "https://api.twitter.com/*",
