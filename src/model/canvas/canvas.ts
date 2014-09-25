@@ -36,14 +36,24 @@ module Prisc {
             var self = new Canvas({
                 element: canvasElement
             });
-            var rate = 0.8;// FIXME: とりあえずハード
-            var imageAspectRate = img.width / img.height;
+
+            // {{{ Canvasの大きさを決める
+            // 比率は保持する
+            var imageAspectRate = img.height / img.width;
             if (window.innerWidth < img.width) {
-                self.__canvas.height = window.innerHeight * rate;
+                // 画像のほうが大きければ、最終結果はwindow基準で決める
+                self.__canvas.width = window.innerWidth - 200;
+            } else if (img.width < window.innerWidth - 120) {
+                // window幅より余裕をもって小さいのであればそのままの大きさ
+                self.__canvas.width = img.width;
             } else {
-                self.__canvas.height = img.height * rate;
+                var rate = 0.9;// FIXME: とりあえずハード
+                // 微妙な大きさなので、imgを0.9倍する
+                self.__canvas.width = img.width * 0.9;
             }
-            self.__canvas.width = self.__canvas.height * imageAspectRate;
+            // }}}
+
+            self.__canvas.height = self.__canvas.width * imageAspectRate;
             self.__context.drawImage(
                 // source image
                 img,
