@@ -37,37 +37,39 @@ module Prisc {
                 element: canvasElement
             });
 
-            // {{{ Canvasの大きさを決める
-            // 比率は保持する
-            var imageAspectRate = img.height / img.width;
-            if (window.innerWidth < img.width) {
-                // 画像のほうが大きければ、最終結果はwindow基準で決める
-                self.__canvas.width = window.innerWidth - 200;
-            } else if (img.width < window.innerWidth - 120) {
-                // window幅より余裕をもって小さいのであればそのままの大きさ
-                self.__canvas.width = img.width;
-            } else {
-                var rate = 0.9;// FIXME: とりあえずハード
-                // 微妙な大きさなので、imgを0.9倍する
-                self.__canvas.width = img.width * 0.9;
-            }
-            // }}}
+            img.addEventListener('load', () => {
+              // {{{ Canvasの大きさを決める
+              // 比率は保持する
+              var imageAspectRate = img.height / img.width;
+              if (window.innerWidth < img.width) {
+                  // 画像のほうが大きければ、最終結果はwindow基準で決める
+                  self.__canvas.width = window.innerWidth - 200;
+              } else if (img.width < window.innerWidth - 120) {
+                  // window幅より余裕をもって小さいのであればそのままの大きさ
+                  self.__canvas.width = img.width;
+              } else {
+                  var rate = 0.9;// FIXME: とりあえずハード
+                  // 微妙な大きさなので、imgを0.9倍する
+                  self.__canvas.width = img.width * 0.9;
+              }
+              // }}}
 
-            self.__canvas.height = self.__canvas.width * imageAspectRate;
-            self.__context.drawImage(
-                // source image
-                img,
-                // starting point of source
-                0,0,
-                // ending point of source
-                img.width, img.height,
-                // where to start writing
-                0,0,
-                // where to end writing
-                self.__canvas.width, self.__canvas.height
-            );
+              self.__canvas.height = self.__canvas.width * imageAspectRate;
+              self.__context.drawImage(
+                  // source image
+                  img,
+                  // starting point of source
+                  0,0,
+                  // ending point of source
+                  img.width, img.height,
+                  // where to start writing
+                  0,0,
+                  // where to end writing
+                  self.__canvas.width, self.__canvas.height
+              );
 
-            self.startListening();
+              self.startListening();
+            });
 
             return self;
         }
