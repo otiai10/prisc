@@ -39,7 +39,7 @@ module Prisc {
             ev.preventDefault();
             $(ev.currentTarget).replaceWith($('<div class="ajax-loader"></div>'));
             var type_uri = this.imageURI.replace('data:','').split('base64,');
-            this.status = $('#js-tweet-box').text();
+            this.status = $('#js-tweet-box').val();
 
             var twitterService = new ServiceTwitter();
             var p: JQueryPromise<Object> = twitterService.tweetWithImageURI(
@@ -73,7 +73,7 @@ module Prisc {
             ModalView.cancel();
         }
         count() {
-            this.status = $('#js-tweet-box').text();
+            this.status = $('#js-tweet-box').val();
             var lengthLeft = ServiceTwitter.STATUS_MAX_LENGTH - this.status.length;
             this.$counter.text(String(lengthLeft));
             if (lengthLeft < 0) {

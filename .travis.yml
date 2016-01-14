@@ -5,10 +5,13 @@ install:
   - "npm install -g bower"
   - "npm install -g testem"
   - "npm install -g grunt-cli"
+  - "npm install -g chest"
 before_script:
+  - chest boost
   - npm install
   - bower install
   - grunt test
 script:
   - testem launchers
   - testem ci
+sudo: false
